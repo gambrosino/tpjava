@@ -1,0 +1,52 @@
+PERSONAJE
+
+id (unico y secuencial, asignado por el sistema)
+
+nombre (unico)
+
+atributos: {vida + energia + defensa(siempre <=20) + evasión(siempre <=80)} <= puntosTotales
+
+	   puntosTotales <=200 
+
+Un personaje tiene 200 puntosTotales al momento de crearse, pero se le irán sumando de a 10
+	por cada partida ganada.
+
+
+PARTIDA
+
+		TURNO
+
+Un jugador ataca ó defiende en un turno. No puede hacer las dos cosas a la vez.
+
+		ATAQUE
+
+Un jugador ataca con sus puntos de Energia.
+
+Un jugador pierde los puntos de Energía ingresados en el turno, sea el ataque exitoso o evadido.
+
+Si el Ataque es exitoso, se le resta esa cantidad de puntos a la Vida del atacado.
+
+El Ataque es evadido por el atacado si (numAleatorio*100) > ptsEvasion del atacado. 
+	Si el ataque es evadido, el atacado no pierde vida.
+
+		DEFENSA
+
+Si un jugador defiende, recupera Energia y Vida
+
+energiaARecuperar = energiaOriginal * defensa / 100. 
+// siempre, (energiaActual + energiaARecuperar <= energiaOriginal)
+
+vidaARecuperar = vidaOriginal * defensa / 100.
+// siempre, (vidaActual + vidaARecuperar <= vidaOriginal)
+
+		GANADOR
+
+Ganador es quien quita primero todos los puntos de Vida del oponente.
+
+Al finalizar el combate, el ganador recibe 10 puntos que se suman a Puntos Totales para poder
+	redistribuirlos entre Vida, Energia, Defensa y Evasión.
+
+		RECUPERACION
+
+Finalizada la partida, cada jugador recupera sus puntos de Vida y Energia previos al combate. 
+(vidaOriginal y energiaOriginal).
