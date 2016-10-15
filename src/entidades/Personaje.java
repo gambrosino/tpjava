@@ -18,9 +18,8 @@ public class Personaje {
 	
 	private int puntosDisponibles;
 	
-
 	private static int getCounter() {
-			return ++Personaje.counter;
+		return ++Personaje.counter;
 	}
 
 	public Personaje(String nombre) {
