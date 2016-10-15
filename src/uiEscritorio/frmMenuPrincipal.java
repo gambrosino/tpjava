@@ -10,6 +10,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class frmMenuPrincipal extends JFrame {
 
@@ -35,6 +37,7 @@ public class frmMenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public frmMenuPrincipal() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -44,6 +47,13 @@ public class frmMenuPrincipal extends JFrame {
 		JButton btnJugar = new JButton("Jugar");
 		
 		JButton btnPersonajes = new JButton("Personajes");
+		btnPersonajes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmPersonaje frmP = new frmPersonaje();
+				frmP.main();
+			}
+		});
 		
 		JButton btnSalir = new JButton("Salir");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

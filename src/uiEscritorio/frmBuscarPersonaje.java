@@ -2,21 +2,20 @@ package uiEscritorio;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class frmCrearPersonaje extends JFrame {
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
+public class frmBuscarPersonaje extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -28,7 +27,7 @@ public class frmCrearPersonaje extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCrearPersonaje frame = new frmCrearPersonaje();
+					frmBuscarPersonaje frame = new frmBuscarPersonaje();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,8 +39,7 @@ public class frmCrearPersonaje extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmCrearPersonaje() {
-		setResizable(false);
+	public frmBuscarPersonaje() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -53,7 +51,7 @@ public class frmCrearPersonaje extends JFrame {
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
 		
-		JButton btnCrear = new JButton("Crear");
+		JButton btnBuscar = new JButton("Buscar");
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {
@@ -67,6 +65,7 @@ public class frmCrearPersonaje extends JFrame {
 		});
 		
 		
+	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -74,33 +73,31 @@ public class frmCrearPersonaje extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-							.addGap(232)
-							.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-							.addGap(136))
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+							.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(190)
-							.addComponent(lblNombre)))
+							.addComponent(lblNombre))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(134)
+							.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(49)
 					.addComponent(lblNombre)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(167, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(227, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
-						.addComponent(btnCrear))
+						.addComponent(btnBuscar))
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+		
 	}
 }

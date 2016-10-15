@@ -11,6 +11,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class frmPersonaje extends JFrame {
 
 	private JPanel contentPane;
@@ -18,7 +21,7 @@ public class frmPersonaje extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,6 +38,7 @@ public class frmPersonaje extends JFrame {
 	 * Create the frame.
 	 */
 	public frmPersonaje() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -42,10 +46,33 @@ public class frmPersonaje extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnCrearPersonaje = new JButton("Crear Personaje");
+		btnCrearPersonaje.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmCrearPersonaje frmCP = new frmCrearPersonaje();
+				frmCP.main();
+			}
+		});
 		
 		JButton btnModificarPersonaje = new JButton("Modificar Personaje");
+		btnModificarPersonaje.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
+				frmBP.main();
+			}
+		});
 		
 		JButton btnAtras = new JButton("Atras");
+		btnAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmMenuPrincipal frmMP = new frmMenuPrincipal();
+			    frmMP.setVisible(true);
+			    setVisible(false);
+			    dispose();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
