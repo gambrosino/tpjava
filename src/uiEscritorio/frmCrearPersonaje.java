@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
+import entidades.Personaje;
+import negocio.ControladorPersonaje;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -54,6 +57,17 @@ public class frmCrearPersonaje extends JFrame {
 		txtNombre.setColumns(10);
 		
 		JButton btnCrear = new JButton("Crear");
+		btnCrear.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				ControladorPersonaje cp = new ControladorPersonaje();
+				Personaje pj1 = cp.crearPersonaje(txtNombre.getText().toString());
+				
+				frmCargarPuntos frmCPts = new frmCargarPuntos(pj1);
+				frmCPts.main(pj1);
+			}
+		});
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addMouseListener(new MouseAdapter() {

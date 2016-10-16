@@ -13,6 +13,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import entidades.Personaje;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Insets;
@@ -29,16 +31,19 @@ public class frmCargarPuntos extends JFrame {
 	private JTextField txtDefensa;
 	private JTextField txtEvasion;
 	private JTextField txtPuntosTotales;
+	//public static Personaje pj; // comentario
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(Personaje pj1) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCargarPuntos frame = new frmCargarPuntos();
+					frmCargarPuntos frame = new frmCargarPuntos(pj1);
 					frame.setVisible(true);
+					//pj = pj1;
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,7 +54,7 @@ public class frmCargarPuntos extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmCargarPuntos() {
+	public frmCargarPuntos(Personaje pj) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -63,7 +68,7 @@ public class frmCargarPuntos extends JFrame {
 		txtNombre = new JTextField();
 		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
-		
+		txtNombre.setText(pj.getNombre());
 		
 		JLabel lblRestantes = new JLabel("RESTANTES");
 		
