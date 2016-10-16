@@ -31,18 +31,16 @@ public class frmCargarPuntos extends JFrame {
 	private JTextField txtDefensa;
 	private JTextField txtEvasion;
 	private JTextField txtPuntosTotales;
-	//public static Personaje pj; // comentario
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(Personaje pj1) {
+	public static void main(Personaje pj) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCargarPuntos frame = new frmCargarPuntos(pj1);
+					frmCargarPuntos frame = new frmCargarPuntos(pj);
 					frame.setVisible(true);
-					//pj = pj1;
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,6 +68,13 @@ public class frmCargarPuntos extends JFrame {
 		txtNombre.setColumns(10);
 		txtNombre.setText(pj.getNombre());
 		
+		
+		JLabel lblPuntosTotales = new JLabel("PUNTOS TOTALES");
+		
+		txtPuntosTotales = new JTextField();
+		txtPuntosTotales.setEditable(false);
+		txtPuntosTotales.setColumns(10);		
+		
 		JLabel lblRestantes = new JLabel("RESTANTES");
 		
 		txtRestantes = new JTextField();
@@ -81,18 +86,52 @@ public class frmCargarPuntos extends JFrame {
 		txtVida = new JTextField();
 		txtVida.setColumns(10);
 		
+		JButton btnVidaU = new JButton("+");
+		btnVidaU.setMargin(new Insets(2, 2, 2, 2));
+		
+		JButton btnVidaD = new JButton("-");
+		btnVidaD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnVidaD.setMargin(new Insets(2, 2, 2, 2));
+		
 		
 		JLabel lblEnergia = new JLabel("ENERGIA:");
 		
 		txtEnergia = new JTextField();
 		txtEnergia.setColumns(10);
 		
+		JButton btnEnergiaD = new JButton("-");
+		btnEnergiaD.setMargin(new Insets(2, 2, 2, 2));
+		
+		JButton btnEnergiaU = new JButton("+");
+		btnEnergiaU.setMargin(new Insets(2, 2, 2, 2));
+		
 		
 		JLabel lblDefensa = new JLabel("DEFENSA:");
+		
+		txtDefensa = new JTextField();
+		txtDefensa.setColumns(10);
+		
+		JButton btnDefensaD = new JButton("-");
+		btnDefensaD.setMargin(new Insets(2, 2, 2, 2));
+		
+		JButton btnDefensaU = new JButton("+");
+		btnDefensaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		
 		JLabel lblEvasion = new JLabel("EVASION:");
 
+		txtEvasion = new JTextField();
+		txtEvasion.setColumns(10);
+		
+		JButton btnEvasionD = new JButton("-");
+		btnEvasionD.setMargin(new Insets(2, 2, 2, 2));
+		
+		JButton btnEvasionU = new JButton("+");
+		btnEvasionU.setMargin(new Insets(2, 2, 2, 2));
+		
 		
 		JButton btnGuardar = new JButton("Guardar");
 		
@@ -106,47 +145,7 @@ public class frmCargarPuntos extends JFrame {
 			    dispose();
 			}
 		});
-		
-		JButton btnVidaU = new JButton("+");
-		btnVidaU.setMargin(new Insets(2, 2, 2, 2));
-		
-		JButton btnVidaD = new JButton("-");
-		btnVidaD.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnVidaD.setMargin(new Insets(2, 2, 2, 2));
-		
-		JButton btnEnergiaD = new JButton("-");
-		btnEnergiaD.setMargin(new Insets(2, 2, 2, 2));
-		
-		JButton btnEnergiaU = new JButton("+");
-		btnEnergiaU.setMargin(new Insets(2, 2, 2, 2));
-		
-		JButton btnDefensaD = new JButton("-");
-		btnDefensaD.setMargin(new Insets(2, 2, 2, 2));
-		
-		JButton btnDefensaU = new JButton("+");
-		btnDefensaU.setMargin(new Insets(2, 2, 2, 2));
-		
-		JButton btnEvasionD = new JButton("-");
-		btnEvasionD.setMargin(new Insets(2, 2, 2, 2));
-		
-		JButton btnEvasionU = new JButton("+");
-		btnEvasionU.setMargin(new Insets(2, 2, 2, 2));
-		
-		txtDefensa = new JTextField();
-		txtDefensa.setColumns(10);
-		
-		txtEvasion = new JTextField();
-		txtEvasion.setColumns(10);
-		
-		JLabel lblPuntosTotales = new JLabel("PUNTOS TOTALES");
-		
-		txtPuntosTotales = new JTextField();
-		txtPuntosTotales.setEditable(false);
-		txtPuntosTotales.setColumns(10);
-		
+			
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

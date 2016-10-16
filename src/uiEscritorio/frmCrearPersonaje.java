@@ -62,10 +62,10 @@ public class frmCrearPersonaje extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				ControladorPersonaje cp = new ControladorPersonaje();
-				Personaje pj1 = cp.crearPersonaje(txtNombre.getText().toString());
+				Personaje pj = cp.crearPersonaje(txtNombre.getText().toString());
 				
-				frmCargarPuntos frmCPts = new frmCargarPuntos(pj1);
-				frmCPts.main(pj1);
+				frmCargarPuntos frmCPts = new frmCargarPuntos(pj);
+				frmCPts.main(pj);
 			}
 		});
 		
