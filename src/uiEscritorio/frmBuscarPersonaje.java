@@ -14,11 +14,11 @@ import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
 
 public class frmBuscarPersonaje extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNombre;
 
 	/**
 	 * Launch the application.
@@ -40,6 +40,7 @@ public class frmBuscarPersonaje extends JFrame {
 	 * Create the frame.
 	 */
 	public frmBuscarPersonaje() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,9 +48,6 @@ public class frmBuscarPersonaje extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel lblNombre = new JLabel("NOMBRE");
-		
-		txtNombre = new JTextField();
-		txtNombre.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		
@@ -64,6 +62,8 @@ public class frmBuscarPersonaje extends JFrame {
 			}
 		});
 		
+		JComboBox cmbNombre = new JComboBox();
+		
 		
 	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -71,27 +71,28 @@ public class frmBuscarPersonaje extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
 							.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(190)
-							.addComponent(lblNombre))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(134)
-							.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)))
+							.addGap(188)
+							.addComponent(lblNombre)))
 					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(127, Short.MAX_VALUE)
+					.addComponent(cmbNombre, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+					.addGap(129))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(49)
+					.addGap(47)
 					.addComponent(lblNombre)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+					.addComponent(cmbNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnBuscar))

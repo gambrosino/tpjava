@@ -45,6 +45,13 @@ public class frmMenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnJugar = new JButton("Jugar");
+		btnJugar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmJugar frmJ = new frmJugar();
+				frmJ.main();
+			}
+		});
 		
 		JButton btnPersonajes = new JButton("Personajes");
 		btnPersonajes.addMouseListener(new MouseAdapter() {
