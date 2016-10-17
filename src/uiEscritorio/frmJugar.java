@@ -31,27 +31,33 @@ public class frmJugar extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		
+
 		JLabel lblJugador1 = new JLabel("JUGADOR 1");
 		lblJugador1.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		JComboBox cmbJugador1 = new JComboBox();
-		
-		
+
+		//FIXME lo mismo que con el jframe para crear personaje 
+		//no se puede incluir logica en los frames 
+		//ControladorPersonaje pjs = new ControladorPersonaje();
+		//ArrayList<Personaje> personajes = pjs.obtenerPersonajes();
+
+		//los frames lo unico que hacen es instanciarse entre ellos despues hay que buscar como 
+		//manejar la logica que utilice la interfaz
+		//for (int i = 0; i < personajes.size(); i++) {
+		//	cmbJugador1.addItem(personajes.get(i).getNombre());
+		//}
+
 		JLabel lblVs = new JLabel("vs.");
 		lblVs.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		
+
 		JLabel lblJugador2 = new JLabel("JUGADOR 2");
 		lblJugador2.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		JComboBox cmbJugador2 = new JComboBox();
-		
-		
+
 		JButton btnJugar = new JButton("Jugar");
-		
-		
+
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,48 +68,105 @@ public class frmJugar extends JFrame {
 			    dispose();
 			}
 		});
-		
-		
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnAtras, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
-					.addComponent(btnJugar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(36)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblJugador1, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-						.addComponent(cmbJugador2, 0, 140, Short.MAX_VALUE))
-					.addGap(18)
-					.addComponent(lblVs, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblJugador2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(cmbJugador1, 0, 140, Short.MAX_VALUE))
-					.addGap(38))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(50)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblJugador2)
-						.addComponent(lblJugador1)
-						.addComponent(lblVs))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(cmbJugador1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cmbJugador2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAtras)
-						.addComponent(btnJugar))
-					.addContainerGap())
-		);
+		gl_contentPane
+				.setHorizontalGroup(gl_contentPane
+						.createParallelGroup(Alignment.TRAILING)
+						.addGroup(
+								Alignment.LEADING,
+								gl_contentPane
+										.createSequentialGroup()
+										.addContainerGap()
+										.addComponent(btnAtras,
+												GroupLayout.PREFERRED_SIZE, 82,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(
+												ComponentPlacement.RELATED,
+												241, Short.MAX_VALUE)
+										.addComponent(btnJugar,
+												GroupLayout.PREFERRED_SIZE, 81,
+												GroupLayout.PREFERRED_SIZE)
+										.addContainerGap())
+						.addGroup(
+								gl_contentPane
+										.createSequentialGroup()
+										.addGap(36)
+										.addGroup(
+												gl_contentPane
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addComponent(
+																lblJugador1,
+																GroupLayout.DEFAULT_SIZE,
+																140,
+																Short.MAX_VALUE)
+														.addComponent(
+																cmbJugador2, 0,
+																140,
+																Short.MAX_VALUE))
+										.addGap(18)
+										.addComponent(lblVs,
+												GroupLayout.PREFERRED_SIZE, 34,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addGroup(
+												gl_contentPane
+														.createParallelGroup(
+																Alignment.LEADING,
+																false)
+														.addComponent(
+																lblJugador2,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE)
+														.addComponent(
+																cmbJugador1, 0,
+																140,
+																Short.MAX_VALUE))
+										.addGap(38)));
+		gl_contentPane
+				.setVerticalGroup(gl_contentPane
+						.createParallelGroup(Alignment.TRAILING)
+						.addGroup(
+								gl_contentPane
+										.createSequentialGroup()
+										.addGap(50)
+										.addGroup(
+												gl_contentPane
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																lblJugador2)
+														.addComponent(
+																lblJugador1)
+														.addComponent(lblVs))
+										.addPreferredGap(
+												ComponentPlacement.RELATED)
+										.addGroup(
+												gl_contentPane
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																cmbJugador1,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																cmbJugador2,
+																GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE))
+										.addPreferredGap(
+												ComponentPlacement.RELATED,
+												127, Short.MAX_VALUE)
+										.addGroup(
+												gl_contentPane
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(btnAtras)
+														.addComponent(btnJugar))
+										.addContainerGap()));
 		contentPane.setLayout(gl_contentPane);
 	}
 }

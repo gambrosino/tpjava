@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//import negocio.ControladorPersonaje;
+
 public class frmCrearPersonaje extends JFrame {
 
 	private JPanel contentPane;
@@ -38,6 +40,21 @@ public class frmCrearPersonaje extends JFrame {
 		txtNombre.setColumns(10);
 		
 		JButton btnCrear = new JButton("Crear");
+		btnCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ControladorPersonaje cp = new ControladorPersonaje();
+				//FIXME no se puede incluir logica en los frames hay que ver de que manera lo
+				//podemos manejar, lo correcto talvez seria utilizar el controlador para que 
+				//el haga el maneje y llame al frame para crear el personaje
+				//Personaje pj = cp.crearPersonaje(txtNombre.getText().toString());
+				
+				frmCargarPuntos frmCPts = new frmCargarPuntos();
+				frmCPts.setLocationRelativeTo(null);
+				frmCPts.setVisible(true);
+			    setVisible(false);
+			    dispose();
+			}
+		});
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {

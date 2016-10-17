@@ -64,25 +64,25 @@ public class frmPersonaje extends JFrame {
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(155)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+					.addGap(131)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addComponent(btnAtras, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnCrearPersonaje, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnModificarPersonaje, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addContainerGap(142, Short.MAX_VALUE))
+						.addComponent(btnModificarPersonaje, Alignment.LEADING))
+					.addContainerGap(132, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(50)
+					.addGap(47)
 					.addComponent(btnCrearPersonaje)
 					.addGap(18)
 					.addComponent(btnModificarPersonaje)
 					.addGap(67)
 					.addComponent(btnAtras)
-					.addContainerGap(47, Short.MAX_VALUE))
+					.addContainerGap(54, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
