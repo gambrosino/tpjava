@@ -11,28 +11,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class frmPersonaje extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmPersonaje frame = new frmPersonaje();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -46,33 +30,38 @@ public class frmPersonaje extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnCrearPersonaje = new JButton("Crear Personaje");
-		btnCrearPersonaje.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnCrearPersonaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frmCrearPersonaje frmCP = new frmCrearPersonaje();
-				frmCP.main();
+				frmCP.setLocationRelativeTo(null);
+				frmCP.setVisible(true);
+				setVisible(false);
+				dispose();
 			}
 		});
 		
 		JButton btnModificarPersonaje = new JButton("Modificar Personaje");
-		btnModificarPersonaje.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnModificarPersonaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
-				frmBP.main();
+				frmBP.setLocationRelativeTo(null);
+				frmBP.setVisible(true);
+				setVisible(false);
+				dispose();
 			}
 		});
 		
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frmMenuPrincipal frmMP = new frmMenuPrincipal();
+				frmMP.setLocationRelativeTo(null);
 			    frmMP.setVisible(true);
 			    setVisible(false);
 			    dispose();
 			}
 		});
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

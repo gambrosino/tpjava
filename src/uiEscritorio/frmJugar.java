@@ -14,28 +14,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class frmJugar extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmJugar frame = new frmJugar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -69,10 +53,10 @@ public class frmJugar extends JFrame {
 		
 		
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frmMenuPrincipal frmMP = new frmMenuPrincipal();
+				frmMP.setLocationRelativeTo(null);
 			    frmMP.setVisible(true);
 			    setVisible(false);
 			    dispose();

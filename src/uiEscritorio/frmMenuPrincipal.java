@@ -10,8 +10,8 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmMenuPrincipal extends JFrame {
 
@@ -25,6 +25,8 @@ public class frmMenuPrincipal extends JFrame {
 			public void run() {
 				try {
 					frmMenuPrincipal frame = new frmMenuPrincipal();
+					frame.pack();
+				    frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,24 +47,34 @@ public class frmMenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				frmJugar frmJ = new frmJugar();
-				frmJ.main();
+		btnJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmJugar frmJugar = new frmJugar();
+				frmJugar.setLocationRelativeTo(null);
+				frmJugar.setVisible(true);
+				setVisible(false);
+				dispose();
 			}
 		});
 		
 		JButton btnPersonajes = new JButton("Personajes");
-		btnPersonajes.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				frmPersonaje frmP = new frmPersonaje();
-				frmP.main();
+		btnPersonajes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmPersonaje frmPersonaje = new frmPersonaje();
+				frmPersonaje.setLocationRelativeTo(null);
+				frmPersonaje.setVisible(true);
+				setVisible(false);
+				dispose();
 			}
 		});
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)

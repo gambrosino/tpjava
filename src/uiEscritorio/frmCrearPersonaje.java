@@ -13,29 +13,13 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmCrearPersonaje extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmCrearPersonaje frame = new frmCrearPersonaje();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -56,16 +40,15 @@ public class frmCrearPersonaje extends JFrame {
 		JButton btnCrear = new JButton("Crear");
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frmPersonaje frmP = new frmPersonaje();
+				frmP.setLocationRelativeTo(null);
 			    frmP.setVisible(true);
 			    setVisible(false);
 			    dispose();
 			}
 		});
-		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

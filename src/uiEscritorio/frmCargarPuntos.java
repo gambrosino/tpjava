@@ -13,8 +13,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -29,22 +27,6 @@ public class frmCargarPuntos extends JFrame {
 	private JTextField txtDefensa;
 	private JTextField txtEvasion;
 	private JTextField txtPuntosTotales;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmCargarPuntos frame = new frmCargarPuntos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -92,10 +74,10 @@ public class frmCargarPuntos extends JFrame {
 		JButton btnGuardar = new JButton("Guardar");
 		
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frmCrearPersonaje frmCP = new frmCrearPersonaje();
+				frmCP.setLocationRelativeTo(null);
 			    frmCP.setVisible(true);
 			    setVisible(false);
 			    dispose();
@@ -106,10 +88,6 @@ public class frmCargarPuntos extends JFrame {
 		btnVidaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnVidaD = new JButton("-");
-		btnVidaD.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnVidaD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEnergiaD = new JButton("-");
@@ -141,7 +119,6 @@ public class frmCargarPuntos extends JFrame {
 		txtPuntosTotales = new JTextField();
 		txtPuntosTotales.setEditable(false);
 		txtPuntosTotales.setColumns(10);
-		
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(

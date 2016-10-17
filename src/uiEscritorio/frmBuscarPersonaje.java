@@ -2,8 +2,6 @@ package uiEscritorio;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -16,25 +14,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class frmBuscarPersonaje extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmBuscarPersonaje frame = new frmBuscarPersonaje();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -52,10 +37,10 @@ public class frmBuscarPersonaje extends JFrame {
 		JButton btnBuscar = new JButton("Buscar");
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				frmPersonaje frmP = new frmPersonaje();
+				frmP.setLocationRelativeTo(null);
 			    frmP.setVisible(true);
 			    setVisible(false);
 			    dispose();
@@ -64,24 +49,22 @@ public class frmBuscarPersonaje extends JFrame {
 		
 		JComboBox cmbNombre = new JComboBox();
 		
-		
-	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
 							.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(188)
 							.addComponent(lblNombre)))
 					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-					.addContainerGap(127, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(141, Short.MAX_VALUE)
 					.addComponent(cmbNombre, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
 					.addGap(129))
 		);
@@ -92,7 +75,7 @@ public class frmBuscarPersonaje extends JFrame {
 					.addComponent(lblNombre)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(cmbNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnBuscar))
