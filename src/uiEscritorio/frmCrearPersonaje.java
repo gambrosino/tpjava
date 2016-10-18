@@ -13,15 +13,17 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
+import entidades.Personaje;
+import negocio.ControladorPersonaje;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-//import negocio.ControladorPersonaje;
 
 public class frmCrearPersonaje extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;
+	private ControladorPersonaje cp = new ControladorPersonaje();
 
 	/**
 	 * Create the frame.
@@ -41,14 +43,8 @@ public class frmCrearPersonaje extends JFrame {
 		
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//ControladorPersonaje cp = new ControladorPersonaje();
-				//FIXME no se puede incluir logica en los frames hay que ver de que manera lo
-				//podemos manejar, lo correcto talvez seria utilizar el controlador para que 
-				//el haga el maneje y llame al frame para crear el personaje
-				//Personaje pj = cp.crearPersonaje(txtNombre.getText().toString());
-				
-				frmCargarPuntos frmCPts = new frmCargarPuntos();
+			public void actionPerformed(ActionEvent e) {			
+				frmCargarPuntos frmCPts = new frmCargarPuntos(cp.crearPersonaje(txtNombre.getText()));
 				frmCPts.setLocationRelativeTo(null);
 				frmCPts.setVisible(true);
 			    setVisible(false);

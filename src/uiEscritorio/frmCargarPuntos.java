@@ -17,6 +17,9 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import negocio.ControladorPersonaje;
+import entidades.Personaje;
+
 public class frmCargarPuntos extends JFrame {
 
 	private JPanel contentPane;
@@ -27,11 +30,17 @@ public class frmCargarPuntos extends JFrame {
 	private JTextField txtDefensa;
 	private JTextField txtEvasion;
 	private JTextField txtPuntosTotales;
+	
+	private Personaje pj;
+	private ControladorPersonaje cp = new ControladorPersonaje();
 
 	/**
 	 * Create the frame.
 	 */
-	public frmCargarPuntos() {
+	public frmCargarPuntos(Personaje personaje) {
+		
+		pj = personaje;
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -45,24 +54,28 @@ public class frmCargarPuntos extends JFrame {
 		txtNombre = new JTextField();
 		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
+		txtNombre.setText(pj.getNombre());
 		
 		
 		JLabel lblRestantes = new JLabel("RESTANTES");
 		
 		txtRestantes = new JTextField();
 		txtRestantes.setColumns(10);
+		txtRestantes.setText(String.valueOf(pj.getPuntosDisponibles()));
 		
 		
 		JLabel lblVida = new JLabel("VIDA:");
 		
 		txtVida = new JTextField();
 		txtVida.setColumns(10);
+		txtVida.setText(String.valueOf(pj.getVida()));
 		
 		
 		JLabel lblEnergia = new JLabel("ENERGIA:");
 		
 		txtEnergia = new JTextField();
 		txtEnergia.setColumns(10);
+		txtEnergia.setText(String.valueOf(pj.getEnergia()));
 		
 		
 		JLabel lblDefensa = new JLabel("DEFENSA:");
@@ -72,6 +85,19 @@ public class frmCargarPuntos extends JFrame {
 
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// definir api para setear los puntos del personaje
+				//cp.guardarPersonaje(pj);
+				
+				frmMenuPrincipal frmMP = new frmMenuPrincipal();
+				frmMP.setLocationRelativeTo(null);
+			    frmMP.setVisible(true);
+			    setVisible(false);
+			    dispose();
+			}
+		});
 		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
@@ -85,34 +111,76 @@ public class frmCargarPuntos extends JFrame {
 		});
 		
 		JButton btnVidaU = new JButton("+");
+		btnVidaU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				incrementar(txtVida);
+			}
+		});
 		btnVidaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnVidaD = new JButton("-");
+		btnVidaD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				decrementar(txtVida);
+			}
+		});
 		btnVidaD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEnergiaD = new JButton("-");
+		btnEnergiaD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decrementar(txtEnergia);
+			}
+		});
 		btnEnergiaD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEnergiaU = new JButton("+");
+		btnEnergiaU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				incrementar(txtEnergia);
+			}
+		});
 		btnEnergiaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnDefensaD = new JButton("-");
+		btnDefensaD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decrementar(txtDefensa);
+			}
+		});
 		btnDefensaD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnDefensaU = new JButton("+");
+		btnDefensaU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				incrementar(txtDefensa);
+			}
+		});
 		btnDefensaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEvasionD = new JButton("-");
+		btnEvasionD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decrementar(txtEvasion);
+			}
+		});
 		btnEvasionD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEvasionU = new JButton("+");
+		btnEvasionU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				incrementar(txtEvasion);
+			}
+		});
 		btnEvasionU.setMargin(new Insets(2, 2, 2, 2));
 		
 		txtDefensa = new JTextField();
 		txtDefensa.setColumns(10);
+		txtDefensa.setText(String.valueOf(pj.getDefensa()));
 		
 		txtEvasion = new JTextField();
 		txtEvasion.setColumns(10);
+		txtEvasion.setText(String.valueOf(pj.getEvasion()));
 		
 		JLabel lblPuntosTotales = new JLabel("PUNTOS TOTALES");
 		
@@ -231,4 +299,24 @@ public class frmCargarPuntos extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	private void incrementar(JTextField input) {
+		int puntosDisponibles = Integer.parseInt(txtRestantes.getText());
+		if(puntosDisponibles > 0) {
+			int valorAtributo = Integer.parseInt(input.getText());
+			input.setText(String.valueOf(++valorAtributo));	
+			txtRestantes.setText(String.valueOf(--puntosDisponibles));
+		}
+	}
+	
+	private void decrementar(JTextField input) {
+		int valorAtributo = Integer.parseInt(input.getText().toString());
+		int puntosDisponibles = Integer.parseInt(txtRestantes.getText());
+		if(valorAtributo > 0 ) {
+			input.setText(String.valueOf(--valorAtributo));
+			txtRestantes.setText(String.valueOf(++puntosDisponibles));
+		}		
+	}
+	
+	
 }

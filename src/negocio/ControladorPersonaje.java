@@ -21,11 +21,16 @@ public class ControladorPersonaje {
 	
 	public Personaje crearPersonaje(String nombre){
 		
-		pj1 = new Personaje(nombre);
-		pjs.add(pj1);
+		Personaje personaje = new Personaje(nombre);
+		//pjs.add(personaje);
 		
-		return pj1;
+		return personaje;
 		
+	}
+	
+	public void guardarPersonaje(Personaje pj) {
+		// buscar personaje en colección
+		// guardar los puntos
 	}
 	
 	public ArrayList<Personaje> obtenerPersonajes(){
