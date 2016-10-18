@@ -24,7 +24,8 @@ public class ControladorPersonaje {
 	}
 	
 	public ArrayList<Personaje> getAll(){
-		return personajes = this.dataPersonaje.getAll();
+		personajes = this.dataPersonaje.getAll();
+		return personajes;
 	}
 
 }

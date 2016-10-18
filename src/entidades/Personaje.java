@@ -12,7 +12,7 @@ public class Personaje {
 	private int evasion;
 	private int puntosDisponibles;
 	
-	//Constructor
+	//Constructores
 	public Personaje(String nombre) {
 		super();
 		this.id = Personaje.getCounter();
@@ -51,6 +51,8 @@ public class Personaje {
 	public void setDefensa(int defensa) { this.defensa = defensa; }
 
 	public void setEvasion(int evasion) { this.evasion = evasion; }
+
+	public void setPuntosDisponibles(int puntosDisponibles) { this.puntosDisponibles = puntosDisponibles; }
 
 	//Methods to add available points to players
 	public void agregarVida(int puntos) {
