@@ -1,6 +1,8 @@
 package data;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import entidades.Personaje;
 import utils.ApplicationException;
 
@@ -10,10 +12,18 @@ public class DataPersonaje {
 		
 	}
 	
-	public void add(Personaje personaje) {
+	public ArrayList<Personaje> getAll(){
+		
+		ArrayList<Personaje> personajes = new ArrayList<Personaje>();
+		
+		
+		return personajes;
+	}
+	
+	public int add(Personaje personaje) {
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
-		
+		int id = 0;
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 					"insert into personajes(nombre, vida, energia, defensa, evasion, puntosDisponibles)"+
@@ -29,9 +39,8 @@ public class DataPersonaje {
 			
 			//after executing the insert use the following lines to retrieve the id
 			rs=stmt.getGeneratedKeys();
-			if(rs!=null && rs.next()){
-				personaje.setId(rs.getInt(1));
-			}
+			if(rs!=null && rs.next())
+				id = rs.getInt(1);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,6 +57,8 @@ public class DataPersonaje {
 				e.printStackTrace();
 			}
 		}
+		
+		return id;
 	}
 	
 	public void update() {

@@ -20,12 +20,11 @@ public class ControladorPersonaje {
 	
 	public void add(String nombre){
 		Personaje personaje = new Personaje(nombre);
-		this.dataPersonaje.add(personaje);
-		
+		personaje.setId(this.dataPersonaje.add(personaje));
 	}
 	
 	public ArrayList<Personaje> getAll(){
-		return personajes;
+		return personajes = this.dataPersonaje.getAll();
 	}
 
 }
