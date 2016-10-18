@@ -2,39 +2,30 @@ package negocio;
 
 import java.util.ArrayList;
 
+import data.DataPersonaje;
 import entidades.Personaje;
+
+import utils.ApplicationException;
 
 public class ControladorPersonaje {
 	
-	private static ArrayList<Personaje> pjs = new ArrayList<Personaje>();
-	Personaje pj1;
-	Personaje pj2;
+	private ArrayList<Personaje> personajes;
+	
+	private data.DataPersonaje dataPersonaje;
 
 	public ControladorPersonaje() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		personajes = new ArrayList<Personaje>();
+		dataPersonaje = new DataPersonaje();
 	}
 	
-	public Personaje crearPersonaje(String nombre){
-		
-		pj1 = new Personaje(nombre);
-		pjs.add(pj1);
-		
-		return pj1;
+	public void add(String nombre){
+		Personaje personaje = new Personaje(nombre);
+		this.dataPersonaje.add(personaje);
 		
 	}
 	
-	public ArrayList<Personaje> obtenerPersonajes(){
-		
-		// select desde la base
-		// Crear los objetos y agregarlos al array list.
-		//TODO
-		return pjs;
-		
+	public ArrayList<Personaje> getAll(){
+		return personajes;
 	}
 
 }

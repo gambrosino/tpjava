@@ -39,47 +39,38 @@ public class frmCargarPuntos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		
 		JLabel lblNombre = new JLabel("NOMBRE");
-		
 		txtNombre = new JTextField();
 		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
 		
-		
 		JLabel lblRestantes = new JLabel("RESTANTES");
-		
 		txtRestantes = new JTextField();
 		txtRestantes.setColumns(10);
 		
-		
 		JLabel lblVida = new JLabel("VIDA:");
-		
 		txtVida = new JTextField();
 		txtVida.setColumns(10);
 		
 		
 		JLabel lblEnergia = new JLabel("ENERGIA:");
-		
 		txtEnergia = new JTextField();
 		txtEnergia.setColumns(10);
 		
 		
 		JLabel lblDefensa = new JLabel("DEFENSA:");
 		
-		
 		JLabel lblEvasion = new JLabel("EVASION:");
-
 		
 		JButton btnGuardar = new JButton("Guardar");
 		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmCrearPersonaje frmCP = new frmCrearPersonaje();
-				frmCP.setLocationRelativeTo(null);
-			    frmCP.setVisible(true);
-			    setVisible(false);
+				frmPersonaje frmPersonaje = new frmPersonaje();
+				frmPersonaje.setLocationRelativeTo(null);
+				frmPersonaje.setVisible(true);
+				setVisible(false);
 			    dispose();
 			}
 		});

@@ -39,6 +39,13 @@ public class frmMenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public frmMenuPrincipal() {
+		initialize();
+	}
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

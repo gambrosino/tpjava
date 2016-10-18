@@ -6,12 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
+import negocio.ControladorPersonaje;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,6 +23,8 @@ import java.awt.event.ActionEvent;
 
 public class frmCrearPersonaje extends JFrame {
 
+	private ControladorPersonaje ctrl;
+	
 	private JPanel contentPane;
 	private JTextField txtNombre;
 
@@ -27,6 +32,14 @@ public class frmCrearPersonaje extends JFrame {
 	 * Create the frame.
 	 */
 	public frmCrearPersonaje() {
+		initialize();
+		ctrl= new ControladorPersonaje();
+	}
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -42,28 +55,14 @@ public class frmCrearPersonaje extends JFrame {
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ControladorPersonaje cp = new ControladorPersonaje();
-				//FIXME no se puede incluir logica en los frames hay que ver de que manera lo
-				//podemos manejar, lo correcto talvez seria utilizar el controlador para que 
-				//el haga el maneje y llame al frame para crear el personaje
-				//Personaje pj = cp.crearPersonaje(txtNombre.getText().toString());
-				
-				frmCargarPuntos frmCPts = new frmCargarPuntos();
-				frmCPts.setLocationRelativeTo(null);
-				frmCPts.setVisible(true);
-			    setVisible(false);
-			    dispose();
+				create();
 			}
 		});
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmPersonaje frmP = new frmPersonaje();
-				frmP.setLocationRelativeTo(null);
-			    frmP.setVisible(true);
-			    setVisible(false);
-			    dispose();
+				cancelar();
 			}
 		});
 		
@@ -102,5 +101,40 @@ public class frmCrearPersonaje extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	private void cleanFields() 
+	{
+		txtNombre.setText("");
+	}
+	
+	private void create() 
+	{
+		String nombre = txtNombre.getText();
+		ctrl.add(nombre);
+		handler("crear");
+	}
+	
+	private void cancelar() 
+	{
+		handler("cancelar");
+	}
+	
+	private void handler(String tipo) 
+	{
+		if(tipo == "crear") {
+			frmCargarPuntos frmCPts = new frmCargarPuntos();
+			frmCPts.setLocationRelativeTo(null);
+			frmCPts.setVisible(true);
+		}
+		else if (tipo == "cancelar") {
+			frmPersonaje frmP = new frmPersonaje();
+			frmP.setLocationRelativeTo(null);
+		    frmP.setVisible(true);
+		}
+		
+		cleanFields();
+	    setVisible(false);
+	    dispose();
 	}
 }

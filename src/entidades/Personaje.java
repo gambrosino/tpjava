@@ -42,6 +42,8 @@ public class Personaje {
 	public int getPuntosDisponibles() { return puntosDisponibles; }
 
 	//Setters
+	public void setId(int id) { this.id = id; }
+	
 	public void setVida(int vida) { this.vida = vida; }
 	
 	public void setEnergia(int energia) { this.energia = energia; }
