@@ -1,7 +1,6 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.util.Hashtable;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -87,15 +86,7 @@ public class frmCargarPuntos extends JFrame {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				// definir api para setear los puntos del personaje
-				//cp.guardarPersonaje(pj);
-				
-				frmMenuPrincipal frmMP = new frmMenuPrincipal();
-				frmMP.setLocationRelativeTo(null);
-			    frmMP.setVisible(true);
-			    setVisible(false);
-			    dispose();
+				guardar();
 			}
 		});
 		
@@ -316,6 +307,30 @@ public class frmCargarPuntos extends JFrame {
 			input.setText(String.valueOf(--valorAtributo));
 			txtRestantes.setText(String.valueOf(++puntosDisponibles));
 		}		
+	}
+	
+	private void guardar() {
+		Hashtable<String, String> atributos = getAtributos();
+		
+		cp.guardarPersonaje(pj, atributos);
+		
+		frmMenuPrincipal frmMP = new frmMenuPrincipal();
+		frmMP.setLocationRelativeTo(null);
+	    frmMP.setVisible(true);
+	    setVisible(false);
+	    dispose();
+		
+	}
+
+	private Hashtable<String, String> getAtributos() {
+		Hashtable<String, String> atributos = new Hashtable<String, String>();
+		atributos.put("vida", txtVida.getText());
+		atributos.put("energia", txtEnergia.getText());
+		atributos.put("defensa", txtDefensa.getText());
+		atributos.put("evasion", txtEvasion.getText());
+		atributos.put("disponibles", txtRestantes.getText());
+		
+		return atributos;
 	}
 	
 	
