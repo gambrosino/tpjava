@@ -1,7 +1,6 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.util.Hashtable;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -135,6 +134,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -174,16 +174,19 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		txtPuntosTotales.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
+
 		btnGuardar.addActionListener(this);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(this);
 		
 		btnVidaU = new JButton("+");
+
 		btnVidaU.setMargin(new Insets(2, 2, 2, 2));
 		btnVidaU.addActionListener(this);
 		
 		btnVidaD = new JButton("-");
+
 		btnVidaD.setMargin(new Insets(2, 2, 2, 2));
 		btnVidaD.addActionListener(this);
 		

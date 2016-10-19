@@ -20,6 +20,7 @@ public class ControladorPersonaje {
 		personajes = new ArrayList<Personaje>();
 		dataPersonaje = new DataPersonaje();
 	}
+
 	
 	public Personaje getActual() {
 		return this.personaje;
@@ -30,7 +31,7 @@ public class ControladorPersonaje {
 		
 		personaje.setId(this.dataPersonaje.add(personaje));
 	}
-	
+
 	public void update(Personaje personaje, Hashtable<String, String> atributos) {
 		// TODO validar datos, manejar excepciones
 		personaje.setVida(Integer.parseInt(atributos.get("vida")));

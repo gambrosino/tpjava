@@ -35,7 +35,7 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	 */
 	public frmCrearPersonaje() {
 		initialize();
-		ctrlPersonaje = new ControladorPersonaje();
+		this.ctrlPersonaje = new ControladorPersonaje();
 	}
 	
 	/**
@@ -89,6 +89,7 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 		btnCrear.addActionListener(this);
 		
 		btnCancelar = new JButton("Cancelar");
+
 		btnCancelar.addActionListener(this);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
