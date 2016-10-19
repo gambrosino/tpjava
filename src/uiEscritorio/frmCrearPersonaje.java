@@ -21,8 +21,6 @@ import negocio.ControladorPersonaje;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//import negocio.ControladorPersonaje;
-
 public class frmCrearPersonaje extends JFrame implements ActionListener{
 
 	private Personaje personaje;
@@ -30,13 +28,14 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	
 	private JPanel contentPane;
 	private JTextField txtNombre;
+	private ControladorPersonaje cp = new ControladorPersonaje();
 
 	/**
 	 * Create the frame.
 	 */
 	public frmCrearPersonaje() {
 		initialize();
-		ctrlPersonaje = new ControladorPersonaje();
+		this.ctrlPersonaje = new ControladorPersonaje();
 	}
 	
 	/**
@@ -57,7 +56,7 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 		
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(this);
-		
+
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(this);
 		

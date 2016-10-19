@@ -1,7 +1,6 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.util.Hashtable;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 
+
 public class frmCargarPuntos extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
@@ -41,7 +41,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	 */
 	public frmCargarPuntos(Personaje personaje) {
 		initialize();
-		ctrlPersonaje = new ControladorPersonaje();
+		this.ctrlPersonaje = new ControladorPersonaje();
 		this.personaje = personaje;
 		fillForm();
 	}
@@ -50,6 +50,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize() {
+
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -88,33 +89,74 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		txtPuntosTotales.setColumns(10);
 		
 		JButton btnGuardar = new JButton("Guardar");
+
 		btnGuardar.addActionListener(this);
 		
 		JButton btnAtras = new JButton("Cancelar");
 		btnAtras.addActionListener(this);
 		
 		JButton btnVidaU = new JButton("+");
+		btnVidaU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				incrementar(txtVida);
+			}
+		});
 		btnVidaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnVidaD = new JButton("-");
+		btnVidaD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				decrementar(txtVida);
+			}
+		});
 		btnVidaD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEnergiaD = new JButton("-");
+		btnEnergiaD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decrementar(txtEnergia);
+			}
+		});
 		btnEnergiaD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEnergiaU = new JButton("+");
+		btnEnergiaU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				incrementar(txtEnergia);
+			}
+		});
 		btnEnergiaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnDefensaD = new JButton("-");
+		btnDefensaD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decrementar(txtDefensa);
+			}
+		});
 		btnDefensaD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnDefensaU = new JButton("+");
+		btnDefensaU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				incrementar(txtDefensa);
+			}
+		});
 		btnDefensaU.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEvasionD = new JButton("-");
+		btnEvasionD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				decrementar(txtEvasion);
+			}
+		});
 		btnEvasionD.setMargin(new Insets(2, 2, 2, 2));
 		
 		JButton btnEvasionU = new JButton("+");
+		btnEvasionU.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				incrementar(txtEvasion);
+			}
+		});
 		btnEvasionU.setMargin(new Insets(2, 2, 2, 2));
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -237,7 +279,6 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	{
 		if (action == "Guardar") {
 			guardar();
-			
 		}
 		
 		if (action == "Guardar" || action == "Cancelar") {
@@ -266,7 +307,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		
 		return atributos;
 	}
-	
+
 	public void fillForm() {
 		txtNombre.setText(personaje.getNombre());
 		txtRestantes.setText(String.valueOf(personaje.getPuntosDisponibles()));
