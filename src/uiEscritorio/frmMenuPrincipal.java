@@ -13,7 +13,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class frmMenuPrincipal extends JFrame {
+public class frmMenuPrincipal extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 
@@ -54,34 +54,14 @@ public class frmMenuPrincipal extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnJugar = new JButton("Jugar");
-		btnJugar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmJugar frmJugar = new frmJugar();
-				frmJugar.setLocationRelativeTo(null);
-				frmJugar.setVisible(true);
-				setVisible(false);
-				dispose();
-			}
-		});
+		btnJugar.addActionListener(this);
 		
 		JButton btnPersonajes = new JButton("Personajes");
-		btnPersonajes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmPersonaje frmPersonaje = new frmPersonaje();
-				frmPersonaje.setLocationRelativeTo(null);
-				frmPersonaje.setVisible(true);
-				setVisible(false);
-				dispose();
-			}
-		});
+		btnPersonajes.addActionListener(this);
 		
 		JButton btnSalir = new JButton("Salir");
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				dispose();
-			}
-		});
+		btnSalir.addActionListener(this);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -107,4 +87,24 @@ public class frmMenuPrincipal extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
+	public void actionPerformed(ActionEvent e) { 
+		actionHandler(e.getActionCommand()); 
+	}
+	
+	private void actionHandler(String action) 
+	{
+		if(action == "Jugar") {
+			frmJugar frmj = new frmJugar();
+			frmj.setLocationRelativeTo(null);
+			frmj.setVisible(true);
+		}
+		if(action == "Personajes") {
+			frmPersonaje frmpj = new frmPersonaje();
+			frmpj.setLocationRelativeTo(null);
+			frmpj.setVisible(true);
+		} 
+
+		setVisible(false);
+		dispose();
+	}
 }

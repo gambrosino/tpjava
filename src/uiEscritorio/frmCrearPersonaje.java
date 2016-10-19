@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import entidades.Personaje;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -21,9 +23,10 @@ import java.awt.event.ActionEvent;
 
 //import negocio.ControladorPersonaje;
 
-public class frmCrearPersonaje extends JFrame {
+public class frmCrearPersonaje extends JFrame implements ActionListener{
 
-	private ControladorPersonaje ctrl;
+	private Personaje personaje;
+	private ControladorPersonaje ctrlPersonaje;
 	
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -33,7 +36,7 @@ public class frmCrearPersonaje extends JFrame {
 	 */
 	public frmCrearPersonaje() {
 		initialize();
-		ctrl= new ControladorPersonaje();
+		ctrlPersonaje = new ControladorPersonaje();
 	}
 	
 	/**
@@ -53,18 +56,10 @@ public class frmCrearPersonaje extends JFrame {
 		txtNombre.setColumns(10);
 		
 		JButton btnCrear = new JButton("Crear");
-		btnCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				create();
-			}
-		});
+		btnCrear.addActionListener(this);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cancelar();
-			}
-		});
+		btnCancelar.addActionListener(this);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -103,6 +98,10 @@ public class frmCrearPersonaje extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
+	public void actionPerformed(ActionEvent e) { 
+		actionHandler(e.getActionCommand()); 
+	}
+	
 	private void cleanFields() 
 	{
 		txtNombre.setText("");
@@ -111,23 +110,18 @@ public class frmCrearPersonaje extends JFrame {
 	private void create() 
 	{
 		String nombre = txtNombre.getText();
-		ctrl.add(nombre);
-		handler("crear");
+		ctrlPersonaje.add(nombre);
 	}
 	
-	private void cancelar() 
+	private void actionHandler(String action) 
 	{
-		handler("cancelar");
-	}
-	
-	private void handler(String tipo) 
-	{
-		if(tipo == "crear") {
-			frmCargarPuntos frmCPts = new frmCargarPuntos();
+		if(action == "Crear") {
+			create();
+			frmCargarPuntos frmCPts = new frmCargarPuntos(ctrlPersonaje.getActual());
 			frmCPts.setLocationRelativeTo(null);
 			frmCPts.setVisible(true);
 		}
-		else if (tipo == "cancelar") {
+		else if (action == "Cancelar") {
 			frmPersonaje frmP = new frmPersonaje();
 			frmP.setLocationRelativeTo(null);
 		    frmP.setVisible(true);
@@ -136,5 +130,5 @@ public class frmCrearPersonaje extends JFrame {
 		cleanFields();
 	    setVisible(false);
 	    dispose();
-	}
+    }
 }

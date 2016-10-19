@@ -14,7 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class frmPersonaje extends JFrame {
+public class frmPersonaje extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 
@@ -22,6 +22,13 @@ public class frmPersonaje extends JFrame {
 	 * Create the frame.
 	 */
 	public frmPersonaje() {
+		initialize();
+	}
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	public void initialize() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -30,37 +37,13 @@ public class frmPersonaje extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnCrearPersonaje = new JButton("Crear Personaje");
-		btnCrearPersonaje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmCrearPersonaje frmCP = new frmCrearPersonaje();
-				frmCP.setLocationRelativeTo(null);
-				frmCP.setVisible(true);
-				setVisible(false);
-				dispose();
-			}
-		});
+		btnCrearPersonaje.addActionListener(this);
 		
 		JButton btnModificarPersonaje = new JButton("Modificar Personaje");
-		btnModificarPersonaje.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
-				frmBP.setLocationRelativeTo(null);
-				frmBP.setVisible(true);
-				setVisible(false);
-				dispose();
-			}
-		});
+		btnModificarPersonaje.addActionListener(this);
 		
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmMenuPrincipal frmMP = new frmMenuPrincipal();
-				frmMP.setLocationRelativeTo(null);
-			    frmMP.setVisible(true);
-			    setVisible(false);
-			    dispose();
-			}
-		});
+		btnAtras.addActionListener(this);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -86,5 +69,28 @@ public class frmPersonaje extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
+	
+	public void actionPerformed(ActionEvent e) { 
+		actionHandler(e.getActionCommand()); 
+	}
+	
+	private void actionHandler(String action) 
+	{
+		if(action == "Crear Personaje") {
+			frmCrearPersonaje frmCP = new frmCrearPersonaje();
+			frmCP.setLocationRelativeTo(null);
+			frmCP.setVisible(true);
+		} else if(action == "Modificar Personaje") {
+			frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
+			frmBP.setLocationRelativeTo(null);
+			frmBP.setVisible(true);
+		} else if(action == "Atras") {
+			frmMenuPrincipal frmMP = new frmMenuPrincipal();
+			frmMP.setLocationRelativeTo(null);
+		    frmMP.setVisible(true);
+		}
+		
+		setVisible(false);
+		dispose();
+	}
 }
