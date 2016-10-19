@@ -21,13 +21,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class frmBuscarPersonaje extends JFrame {
+public class frmBuscarPersonaje extends JFrame implements ActionListener{
 
 	private ControladorPersonaje ctrlPersonaje;
 	
 	private JPanel contentPane;
-	JComboBox cmbNombre;
-
+	private JComboBox cmbPersonaje;
+	
+	private JButton btnBuscar;
+	private JButton btnCancelar;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -36,7 +39,34 @@ public class frmBuscarPersonaje extends JFrame {
 		this.ctrlPersonaje = new ControladorPersonaje();
 		this.fillComboBox();
 	}
+	/**
+	 * Frame Methods
+	 */
+	public void actionPerformed(ActionEvent e) {
+		actionHandler(e.getSource());
+	}
 	
+	private void actionHandler(Object source) {
+		if(source == btnBuscar) {
+			frmCargarPuntos frmCPts = new frmCargarPuntos((Personaje)(cmbPersonaje.getSelectedItem()));
+			frmCPts.setLocationRelativeTo(null);
+			frmCPts.setVisible(true);
+		} else if(source == btnCancelar) {
+			frmPersonaje frmP = new frmPersonaje();
+			frmP.setLocationRelativeTo(null);
+		    frmP.setVisible(true);
+		}
+		
+	    setVisible(false);
+	    dispose();	
+	}
+	
+	private void fillComboBox() {
+		ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
+		for (Personaje personaje : personajes) {
+			cmbPersonaje.addItem(personaje);
+		}
+	}
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -51,20 +81,13 @@ public class frmBuscarPersonaje extends JFrame {
 		
 		JLabel lblNombre = new JLabel("NOMBRE");
 		
-		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(this);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmPersonaje frmP = new frmPersonaje();
-				frmP.setLocationRelativeTo(null);
-			    frmP.setVisible(true);
-			    setVisible(false);
-			    dispose();
-			}
-		});
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(this);
 		
-		cmbNombre = new JComboBox();
+		cmbPersonaje = new JComboBox();
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -82,7 +105,7 @@ public class frmBuscarPersonaje extends JFrame {
 					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap(141, Short.MAX_VALUE)
-					.addComponent(cmbNombre, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+					.addComponent(cmbPersonaje, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
 					.addGap(129))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -91,7 +114,7 @@ public class frmBuscarPersonaje extends JFrame {
 					.addGap(47)
 					.addComponent(lblNombre)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(cmbNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(cmbPersonaje, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
@@ -101,11 +124,4 @@ public class frmBuscarPersonaje extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 		
 	}
-	private void fillComboBox() {
-		ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
-		for (Personaje personaje : personajes) {
-			cmbNombre.addItem(personaje);
-		}
-	}
-
 }

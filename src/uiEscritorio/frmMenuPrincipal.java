@@ -10,6 +10,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -17,8 +18,8 @@ public class frmMenuPrincipal extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 
-	JButton btnPersonajes;
-	JButton btnJugar;
+	private JButton btnPersonajes;
+	private JButton btnJugar;
 	
 	/**
 	 * Launch the application.
@@ -42,7 +43,32 @@ public class frmMenuPrincipal extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public frmMenuPrincipal() {
+		setTitle("Juego Por Turnos");
 		initialize();
+	}
+	
+	/**
+	 * Frame Methods
+	 */
+	public void actionPerformed(ActionEvent e) { 
+		actionHandler(e.getSource()); 
+	}
+	
+	private void actionHandler(Object source) 
+	{
+		if(source == btnJugar) {
+			frmJugar frmj = new frmJugar();
+			frmj.setLocationRelativeTo(null);
+			frmj.setVisible(true);
+		}
+		if(source == btnPersonajes) {
+			frmPersonaje frmpj = new frmPersonaje();
+			frmpj.setLocationRelativeTo(null);
+			frmpj.setVisible(true);
+		} 
+
+		setVisible(false);
+		dispose();
 	}
 	
 	/**
@@ -88,26 +114,5 @@ public class frmMenuPrincipal extends JFrame implements ActionListener {
 					.addContainerGap(56, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
-	}
-
-	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getSource()); 
-	}
-	
-	private void actionHandler(Object source) 
-	{
-		if(source == btnJugar) {
-			frmJugar frmj = new frmJugar();
-			frmj.setLocationRelativeTo(null);
-			frmj.setVisible(true);
-		}
-		if(source == btnPersonajes) {
-			frmPersonaje frmpj = new frmPersonaje();
-			frmpj.setLocationRelativeTo(null);
-			frmpj.setVisible(true);
-		} 
-
-		setVisible(false);
-		dispose();
-	}
+	}	
 }

@@ -6,9 +6,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import entidades.Personaje;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -17,11 +14,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 
 import negocio.ControladorPersonaje;
+import entidades.Personaje;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-//import negocio.ControladorPersonaje;
 
 public class frmCrearPersonaje extends JFrame implements ActionListener{
 
@@ -30,6 +26,9 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	
 	private JPanel contentPane;
 	private JTextField txtNombre;
+	
+	private JButton btnCrear;
+	private JButton btnCancelar;
 
 	/**
 	 * Create the frame.
@@ -39,6 +38,37 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 		ctrlPersonaje = new ControladorPersonaje();
 	}
 	
+	/**
+	 * Frame Methods
+	 */
+	public void actionPerformed(ActionEvent e) { 
+		actionHandler(e.getSource()); 
+	}
+	
+	private void actionHandler(Object source) 
+	{
+		if(source == btnCrear) {
+			create();
+			frmCargarPuntos frmCPts = new frmCargarPuntos(ctrlPersonaje.getActual());
+			frmCPts.setLocationRelativeTo(null);
+			frmCPts.setVisible(true);
+		}
+		else if (source == btnCancelar) {
+			frmPersonaje frmP = new frmPersonaje();
+			frmP.setLocationRelativeTo(null);
+		    frmP.setVisible(true);
+		}
+		
+	    setVisible(false);
+	    dispose();
+    }
+	
+	private void create() 
+	{
+		String nombre = txtNombre.getText();
+		ctrlPersonaje.add(nombre);
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -55,10 +85,10 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
 		
-		JButton btnCrear = new JButton("Crear");
+		btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(this);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(this);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -97,38 +127,4 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-	
-	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getActionCommand()); 
-	}
-	
-	private void cleanFields() 
-	{
-		txtNombre.setText("");
-	}
-	
-	private void create() 
-	{
-		String nombre = txtNombre.getText();
-		ctrlPersonaje.add(nombre);
-	}
-	
-	private void actionHandler(String action) 
-	{
-		if(action == "Crear") {
-			create();
-			frmCargarPuntos frmCPts = new frmCargarPuntos(ctrlPersonaje.getActual());
-			frmCPts.setLocationRelativeTo(null);
-			frmCPts.setVisible(true);
-		}
-		else if (action == "Cancelar") {
-			frmPersonaje frmP = new frmPersonaje();
-			frmP.setLocationRelativeTo(null);
-		    frmP.setVisible(true);
-		}
-		
-		cleanFields();
-	    setVisible(false);
-	    dispose();
-    }
 }

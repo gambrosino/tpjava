@@ -18,11 +18,42 @@ public class frmPersonaje extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 
+	private JButton btnCrearPersonaje;
+	private JButton btnModificarPersonaje;
+	private JButton btnAtras;
+
 	/**
 	 * Create the frame.
 	 */
 	public frmPersonaje() {
 		initialize();
+	}
+	
+	/**
+	 * Frame Methods
+	 */
+	public void actionPerformed(ActionEvent e) { 
+		actionHandler(e.getSource()); 
+	}
+	
+	private void actionHandler(Object source) 
+	{
+		if(source == btnCrearPersonaje) {
+			frmCrearPersonaje frmCP = new frmCrearPersonaje();
+			frmCP.setLocationRelativeTo(null);
+			frmCP.setVisible(true);
+		} else if(source == btnModificarPersonaje) {
+			frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
+			frmBP.setLocationRelativeTo(null);
+			frmBP.setVisible(true);
+		} else if(source == btnAtras) {
+			frmMenuPrincipal frmMP = new frmMenuPrincipal();
+			frmMP.setLocationRelativeTo(null);
+		    frmMP.setVisible(true);
+		}
+		
+		setVisible(false);
+		dispose();
 	}
 	
 	/**
@@ -36,13 +67,13 @@ public class frmPersonaje extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnCrearPersonaje = new JButton("Crear Personaje");
+		btnCrearPersonaje = new JButton("Crear Personaje");
 		btnCrearPersonaje.addActionListener(this);
 		
-		JButton btnModificarPersonaje = new JButton("Modificar Personaje");
+		btnModificarPersonaje = new JButton("Modificar Personaje");
 		btnModificarPersonaje.addActionListener(this);
 		
-		JButton btnAtras = new JButton("Atras");
+		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(this);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -68,29 +99,5 @@ public class frmPersonaje extends JFrame implements ActionListener {
 					.addContainerGap(54, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
-	}
-	
-	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getActionCommand()); 
-	}
-	
-	private void actionHandler(String action) 
-	{
-		if(action == "Crear Personaje") {
-			frmCrearPersonaje frmCP = new frmCrearPersonaje();
-			frmCP.setLocationRelativeTo(null);
-			frmCP.setVisible(true);
-		} else if(action == "Modificar Personaje") {
-			frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
-			frmBP.setLocationRelativeTo(null);
-			frmBP.setVisible(true);
-		} else if(action == "Atras") {
-			frmMenuPrincipal frmMP = new frmMenuPrincipal();
-			frmMP.setLocationRelativeTo(null);
-		    frmMP.setVisible(true);
-		}
-		
-		setVisible(false);
-		dispose();
 	}
 }
