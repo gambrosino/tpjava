@@ -40,6 +40,8 @@ public class Personaje {
 	public int getEvasion() { return evasion; }
 	
 	public int getPuntosDisponibles() { return puntosDisponibles; }
+	
+	public String toString() { return this.nombre; }
 
 	//Setters
 	public void setId(int id) { this.id = id; }

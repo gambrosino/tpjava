@@ -17,6 +17,9 @@ public class frmMenuPrincipal extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 
+	JButton btnPersonajes;
+	JButton btnJugar;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -53,10 +56,10 @@ public class frmMenuPrincipal extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnJugar = new JButton("Jugar");
+		btnJugar = new JButton("Jugar");
 		btnJugar.addActionListener(this);
 		
-		JButton btnPersonajes = new JButton("Personajes");
+		btnPersonajes = new JButton("Personajes");
 		btnPersonajes.addActionListener(this);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -88,17 +91,17 @@ public class frmMenuPrincipal extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getActionCommand()); 
+		actionHandler(e.getSource()); 
 	}
 	
-	private void actionHandler(String action) 
+	private void actionHandler(Object source) 
 	{
-		if(action == "Jugar") {
+		if(source == btnJugar) {
 			frmJugar frmj = new frmJugar();
 			frmj.setLocationRelativeTo(null);
 			frmj.setVisible(true);
 		}
-		if(action == "Personajes") {
+		if(source == btnPersonajes) {
 			frmPersonaje frmpj = new frmPersonaje();
 			frmpj.setLocationRelativeTo(null);
 			frmpj.setVisible(true);

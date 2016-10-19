@@ -14,17 +14,34 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 
+import negocio.ControladorPersonaje;
+import entidades.Personaje;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class frmBuscarPersonaje extends JFrame {
 
+	private ControladorPersonaje ctrlPersonaje;
+	
 	private JPanel contentPane;
+	JComboBox cmbNombre;
 
 	/**
 	 * Create the frame.
 	 */
 	public frmBuscarPersonaje() {
+		initialize();
+		this.ctrlPersonaje = new ControladorPersonaje();
+		this.fillComboBox();
+	}
+	
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -47,7 +64,7 @@ public class frmBuscarPersonaje extends JFrame {
 			}
 		});
 		
-		JComboBox cmbNombre = new JComboBox();
+		cmbNombre = new JComboBox();
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -84,4 +101,11 @@ public class frmBuscarPersonaje extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 		
 	}
+	private void fillComboBox() {
+		ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
+		for (Personaje personaje : personajes) {
+			cmbNombre.addItem(personaje);
+		}
+	}
+
 }

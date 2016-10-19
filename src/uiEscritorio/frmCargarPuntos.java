@@ -41,7 +41,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	 */
 	public frmCargarPuntos(Personaje personaje) {
 		initialize();
-		ctrlPersonaje = new ControladorPersonaje();
+		this.ctrlPersonaje = new ControladorPersonaje();
 		this.personaje = personaje;
 		fillForm();
 	}

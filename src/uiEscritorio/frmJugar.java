@@ -14,17 +14,38 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import entidades.Personaje;
+import negocio.ControladorPersonaje;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class frmJugar extends JFrame {
 
 	private JPanel contentPane;
+	private ControladorPersonaje ctrlPersonaje;
 
+	JComboBox cmbJugador1;
+	JComboBox cmbJugador2;	
 	/**
 	 * Create the frame.
 	 */
 	public frmJugar() {
+		initialize();
+		this.ctrlPersonaje = new ControladorPersonaje();
+		this.fillComboBox();
+	}
+		
+	private void fillComboBox() {
+	    ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
+	    for(Personaje personaje : personajes ){
+	    	cmbJugador1.addItem(personaje);
+	    	cmbJugador2.addItem(personaje);
+	    }
+	}
+
+	public void initialize() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -35,26 +56,14 @@ public class frmJugar extends JFrame {
 		JLabel lblJugador1 = new JLabel("JUGADOR 1");
 		lblJugador1.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JComboBox cmbJugador1 = new JComboBox();
-
-		//FIXME lo mismo que con el jframe para crear personaje 
-		//no se puede incluir logica en los frames 
-		//ControladorPersonaje pjs = new ControladorPersonaje();
-		//ArrayList<Personaje> personajes = pjs.obtenerPersonajes();
-
-		//los frames lo unico que hacen es instanciarse entre ellos despues hay que buscar como 
-		//manejar la logica que utilice la interfaz
-		//for (int i = 0; i < personajes.size(); i++) {
-		//	cmbJugador1.addItem(personajes.get(i).getNombre());
-		//}
-
 		JLabel lblVs = new JLabel("vs.");
 		lblVs.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JLabel lblJugador2 = new JLabel("JUGADOR 2");
 		lblJugador2.setHorizontalAlignment(SwingConstants.CENTER);
 
-		JComboBox cmbJugador2 = new JComboBox();
+		cmbJugador1 = new JComboBox();
+		cmbJugador2 = new JComboBox();
 
 		JButton btnJugar = new JButton("Jugar");
 
