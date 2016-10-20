@@ -19,6 +19,7 @@ import java.awt.Insets;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.SwingConstants;
 
 public class frmCargarPuntos extends JFrame implements ActionListener{
 
@@ -104,6 +105,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	
 	public void fillForm() {
 		txtNombre.setText(personaje.getNombre());
+		txtPuntosTotales.setText(String.valueOf(personaje.getPuntosDisponibles()));
 		txtRestantes.setText(String.valueOf(personaje.getPuntosDisponibles()));
 		txtVida.setText(String.valueOf(personaje.getVida()));
 		txtEnergia.setText(String.valueOf(personaje.getEnergia()));
@@ -144,49 +146,53 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		
 		JLabel lblNombre = new JLabel("NOMBRE");
 		txtNombre = new JTextField();
+		txtNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		txtNombre.setEditable(false);
 		txtNombre.setColumns(10);
 		
 		JLabel lblRestantes = new JLabel("RESTANTES");
 		txtRestantes = new JTextField();
+		txtRestantes.setHorizontalAlignment(SwingConstants.CENTER);
 		txtRestantes.setEditable(false);
 		txtRestantes.setColumns(10);
 		
 		JLabel lblVida = new JLabel("VIDA:");
 		txtVida = new JTextField();
+		txtVida.setHorizontalAlignment(SwingConstants.CENTER);
 		txtVida.setColumns(10);
 		
 		JLabel lblEnergia = new JLabel("ENERGIA:");
 		txtEnergia = new JTextField();
+		txtEnergia.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEnergia.setColumns(10);
 		
 		JLabel lblDefensa = new JLabel("DEFENSA:");
 		txtDefensa = new JTextField();
+		txtDefensa.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDefensa.setColumns(10);
 		
 		JLabel lblEvasion = new JLabel("EVASION:");
 		txtEvasion = new JTextField();
+		txtEvasion.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEvasion.setColumns(10);
 		
 		JLabel lblPuntosTotales = new JLabel("PUNTOS TOTALES");
 		txtPuntosTotales = new JTextField();
+		txtPuntosTotales.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPuntosTotales.setEditable(false);
 		txtPuntosTotales.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
-
 		btnGuardar.addActionListener(this);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(this);
 		
 		btnVidaU = new JButton("+");
-
 		btnVidaU.setMargin(new Insets(2, 2, 2, 2));
 		btnVidaU.addActionListener(this);
 		
 		btnVidaD = new JButton("-");
-
 		btnVidaD.setMargin(new Insets(2, 2, 2, 2));
 		btnVidaD.addActionListener(this);
 		

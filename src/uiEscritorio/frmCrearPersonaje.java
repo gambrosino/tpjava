@@ -18,6 +18,8 @@ import entidades.Personaje;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import javax.swing.SwingConstants;
 
 public class frmCrearPersonaje extends JFrame implements ActionListener{
 
@@ -29,6 +31,7 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	
 	private JButton btnCrear;
 	private JButton btnCancelar;
+	private JLabel lblMensaje;
 
 	/**
 	 * Create the frame.
@@ -65,9 +68,11 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	
 	private void create() 
 	{
+		// TODO validar que ese nombre de personaje no exista
 		String nombre = txtNombre.getText();
 		ctrlPersonaje.add(nombre);
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -92,24 +97,31 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 
 		btnCancelar.addActionListener(this);
 		
+		lblMensaje = new JLabel("");
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblMensaje, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
 							.addGap(232)
-							.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-							.addGap(136))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(190)
-							.addComponent(lblNombre)))
+							.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(142, Short.MAX_VALUE)
+					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+					.addGap(138))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(197, Short.MAX_VALUE)
+					.addComponent(lblNombre)
+					.addGap(195))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -118,9 +130,9 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 					.addComponent(lblNombre)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(txtNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(167, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(227, Short.MAX_VALUE)
+					.addGap(50)
+					.addComponent(lblMensaje)
+					.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnCrear))

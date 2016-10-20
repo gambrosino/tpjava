@@ -61,10 +61,10 @@ public class frmJugar extends JFrame implements ActionListener{
 	}
 	
 	private void comenzarPartida() {
-		frmPartida frmPartida = new frmPartida((Personaje)(cmbJugador1.getSelectedItem()),
+		frmPartida frmPartida_absPane = new frmPartida((Personaje)(cmbJugador1.getSelectedItem()),
 				   								(Personaje)(cmbJugador2.getSelectedItem()));
-		frmPartida.setLocationRelativeTo(null);
-		frmPartida.setVisible(true);
+		frmPartida_absPane.setLocationRelativeTo(null);
+		frmPartida_absPane.setVisible(true);
 		cerrarFormulario();
 	}
 	
@@ -130,30 +130,34 @@ public class frmJugar extends JFrame implements ActionListener{
 		btnAtras.addActionListener(this);
 		
 		lblMensaje = new JLabel("");
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
 
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnAtras, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
-							.addComponent(btnJugar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblMensaje, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+							.addContainerGap())
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblJugador1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblMensaje, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblJugador1, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
 								.addComponent(cmbJugador1, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblVs, GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+									.addComponent(lblVs, GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
 									.addGap(10)
 									.addComponent(lblJugador2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
-								.addComponent(cmbJugador2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap())
+								.addComponent(cmbJugador2, GroupLayout.PREFERRED_SIZE, 172, GroupLayout.PREFERRED_SIZE))
+							.addContainerGap())
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnAtras, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+							.addComponent(btnJugar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -167,12 +171,12 @@ public class frmJugar extends JFrame implements ActionListener{
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(cmbJugador1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(cmbJugador2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(52)
-					.addComponent(lblMensaje, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(66)
+					.addGap(43)
+					.addComponent(lblMensaje, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAtras)
-						.addComponent(btnJugar))
+						.addComponent(btnJugar)
+						.addComponent(btnAtras))
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
