@@ -21,18 +21,17 @@ public class ControladorPersonaje {
 		dataPersonaje = new DataPersonaje();
 	}
 
-	
 	public Personaje getActual() {
 		return this.personaje;
 	}
 	
-	public void add(String nombre){
-		this.personaje = new Personaje(nombre);
-		
-		personaje.setId(this.dataPersonaje.add(personaje));
+	public Personaje nuevoPersonaje(String nombre) {
+		personaje = new Personaje(nombre);
+		// validar que no exista el nombre
+		return personaje;
 	}
-
-	public void update(Personaje personaje, Hashtable<String, String> atributos) {
+	
+	public void guardar(Personaje personaje, Hashtable<String, String> atributos) {
 		// TODO validar datos, manejar excepciones
 		personaje.setVida(Integer.parseInt(atributos.get("vida")));
 		personaje.setEnergia(Integer.parseInt(atributos.get("energia")));
@@ -40,7 +39,11 @@ public class ControladorPersonaje {
 		personaje.setEvasion(Integer.parseInt(atributos.get("evasion")));
 		personaje.setPuntosDisponibles(Integer.parseInt(atributos.get("puntosDisponibles")));
 		
-		this.dataPersonaje.update(personaje);
+		if (personaje.getId() == 0) {
+			dataPersonaje.add(personaje);
+		} else {
+			dataPersonaje.update(personaje);
+		}	
 	}
 	
 	public Personaje getBy(int id) {

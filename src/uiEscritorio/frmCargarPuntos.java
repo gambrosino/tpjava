@@ -89,7 +89,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	private void guardar() {
 		Hashtable<String, String> atributos = getAtributos();
 		
-		ctrlPersonaje.update(personaje, atributos);
+		ctrlPersonaje.guardar(personaje, atributos);
 	}
 
 	private Hashtable<String, String> getAtributos() {

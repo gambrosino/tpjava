@@ -3,7 +3,6 @@ package entidades;
 public class Personaje {
 	
 	//Attributes
-	private static int counter;
 	private int id;
 	private String nombre;
 	private int vida;
@@ -15,7 +14,6 @@ public class Personaje {
 	//Constructores
 	public Personaje(String nombre) {
 		super();
-		this.id = Personaje.getCounter();
 		this.nombre = nombre;
 		this.vida = 0;
 		this.energia = 0;
@@ -24,9 +22,7 @@ public class Personaje {
 		this.puntosDisponibles = 200;
 	}
 	
-	//Getters
-	private static int getCounter() { return ++Personaje.counter; }
-	
+	//Getters	
 	public int getId() { return this.id; }
 	
 	public String getNombre() { return nombre; }

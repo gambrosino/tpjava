@@ -67,6 +67,7 @@ public class DataPersonaje {
 			while(rs.next()) {
 				Personaje personaje = new Personaje(rs.getString("nombre"));
 				
+				personaje.setId(rs.getInt("id"));
 				personaje.setDefensa(rs.getInt("defensa"));
 				personaje.setEnergia(rs.getInt("energia"));
 				personaje.setEvasion(rs.getInt("evasion"));
@@ -95,10 +96,9 @@ public class DataPersonaje {
 		return personajes;
 	}
 	
-	public int add(Personaje personaje) {
+	public void add(Personaje personaje) {
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
-		int id = 0;
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
 					"INSERT INTO personajes(nombre, vida, energia, defensa, evasion, puntosDisponibles) "+
@@ -111,11 +111,6 @@ public class DataPersonaje {
 			stmt.setInt(5, personaje.getEvasion());
 			stmt.setInt(6, personaje.getPuntosDisponibles());
 			stmt.execute();
-			
-			//after executing the insert use the following lines to retrieve the id
-			rs=stmt.getGeneratedKeys();
-			if(rs!=null && rs.next())
-				id = rs.getInt(1);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,8 +127,6 @@ public class DataPersonaje {
 				e.printStackTrace();
 			}
 		}
-		
-		return id;
 	}
 	
 	public void update(Personaje personaje) {

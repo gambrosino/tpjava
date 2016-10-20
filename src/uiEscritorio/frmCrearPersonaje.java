@@ -51,8 +51,7 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	private void actionHandler(Object source) 
 	{
 		if(source == btnCrear) {
-			create();
-			frmCargarPuntos frmCPts = new frmCargarPuntos(ctrlPersonaje.getActual());
+			frmCargarPuntos frmCPts = new frmCargarPuntos(ctrlPersonaje.nuevoPersonaje(txtNombre.getText()));
 			frmCPts.setLocationRelativeTo(null);
 			frmCPts.setVisible(true);
 		}
@@ -65,14 +64,6 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	    setVisible(false);
 	    dispose();
     }
-	
-	private void create() 
-	{
-		// TODO validar que ese nombre de personaje no exista
-		String nombre = txtNombre.getText();
-		ctrlPersonaje.add(nombre);
-	}
-	
 
 	/**
 	 * Initialize the contents of the frame.
