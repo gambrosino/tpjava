@@ -37,7 +37,8 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public frmCrearPersonaje() {
-		initialize();
+		setTitle("Crear Personaje");
+		inicializar();
 		this.ctrlPersonaje = new ControladorPersonaje();
 	}
 	
@@ -68,7 +69,7 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void inicializar() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

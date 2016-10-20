@@ -49,7 +49,8 @@ public class frmPartida extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public frmPartida(Personaje jugador1, Personaje jugador2) {
-		initialize();
+		setTitle("Partida");
+		inicializar();
 		this.ctrlPersonaje = new ControladorPersonaje();
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
@@ -82,10 +83,10 @@ public class frmPartida extends JFrame implements ActionListener{
 		// TODO
 		// definir el turno
 		// deshabilitar los botones segun sea el turno
-		this.fillForm();	
+		this.llenarCampos();	
 	}
 	
-	private void fillForm(){
+	private void llenarCampos(){
 		txtJugador1.setText(jugador1.getNombre());
 		txtJugador2.setText(jugador2.getNombre());
 		
@@ -100,7 +101,7 @@ public class frmPartida extends JFrame implements ActionListener{
 		txtEvasion2.setText(String.valueOf(jugador2.getEvasion()));
 	}
 
-	public void initialize() {
+	public void inicializar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -19,14 +19,15 @@ public class frmPersonaje extends JFrame implements ActionListener {
 	private JPanel contentPane;
 
 	private JButton btnCrearPersonaje;
-	private JButton btnModificarPersonaje;
+	private JButton btnModificarBorrar;
 	private JButton btnAtras;
 
 	/**
 	 * Create the frame.
 	 */
 	public frmPersonaje() {
-		initialize();
+		setTitle("Menu Personajes");
+		inicializar();
 	}
 	
 	/**
@@ -42,7 +43,7 @@ public class frmPersonaje extends JFrame implements ActionListener {
 			frmCrearPersonaje frmCP = new frmCrearPersonaje();
 			frmCP.setLocationRelativeTo(null);
 			frmCP.setVisible(true);
-		} else if(source == btnModificarPersonaje) {
+		} else if(source == btnModificarBorrar) {
 			frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
 			frmBP.setLocationRelativeTo(null);
 			frmBP.setVisible(true);
@@ -59,7 +60,7 @@ public class frmPersonaje extends JFrame implements ActionListener {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize() {
+	public void inicializar() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -70,8 +71,8 @@ public class frmPersonaje extends JFrame implements ActionListener {
 		btnCrearPersonaje = new JButton("Crear Personaje");
 		btnCrearPersonaje.addActionListener(this);
 		
-		btnModificarPersonaje = new JButton("Modificar Personaje");
-		btnModificarPersonaje.addActionListener(this);
+		btnModificarBorrar = new JButton("Modificar o Borrar Personaje");
+		btnModificarBorrar.addActionListener(this);
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(this);
@@ -84,7 +85,7 @@ public class frmPersonaje extends JFrame implements ActionListener {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addComponent(btnAtras, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnCrearPersonaje, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnModificarPersonaje, Alignment.LEADING))
+						.addComponent(btnModificarBorrar, Alignment.LEADING))
 					.addContainerGap(132, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -93,7 +94,7 @@ public class frmPersonaje extends JFrame implements ActionListener {
 					.addGap(47)
 					.addComponent(btnCrearPersonaje)
 					.addGap(18)
-					.addComponent(btnModificarPersonaje)
+					.addComponent(btnModificarBorrar)
 					.addGap(67)
 					.addComponent(btnAtras)
 					.addContainerGap(54, Short.MAX_VALUE))

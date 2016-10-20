@@ -165,7 +165,31 @@ public class DataPersonaje {
 		}
 	}
 	
-	public void delete() {
+	public void delete(Personaje personaje) {
+		ResultSet rs=null;
+		PreparedStatement stmt=null;
 		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+					"DELETE FROM personajes " +
+					"WHERE id = ?");
+			stmt.setInt(1, personaje.getId());
+			stmt.execute();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

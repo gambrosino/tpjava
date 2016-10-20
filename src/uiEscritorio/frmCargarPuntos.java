@@ -51,10 +51,11 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public frmCargarPuntos(Personaje personaje) {
-		initialize();
+		setTitle("Cargar Puntos");
+		inicializar();
 		this.ctrlPersonaje = new ControladorPersonaje();
 		this.personaje = personaje;
-		fillForm();
+		llenarCampos();
 	}
 	
 	/**
@@ -103,7 +104,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		return atributos;
 	}
 	
-	public void fillForm() {
+	public void llenarCampos() {
 		txtNombre.setText(personaje.getNombre());
 		txtPuntosTotales.setText(String.valueOf(personaje.getPuntosDisponibles()));
 		txtRestantes.setText(String.valueOf(personaje.getPuntosDisponibles()));
@@ -135,7 +136,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize() {
+	public void inicializar() {
 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -160,21 +161,25 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		txtVida = new JTextField();
 		txtVida.setHorizontalAlignment(SwingConstants.CENTER);
 		txtVida.setColumns(10);
-		
+		txtVida.setEditable(false);
+
 		JLabel lblEnergia = new JLabel("ENERGIA:");
 		txtEnergia = new JTextField();
 		txtEnergia.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEnergia.setColumns(10);
+		txtEnergia.setEditable(false);
 		
 		JLabel lblDefensa = new JLabel("DEFENSA:");
 		txtDefensa = new JTextField();
 		txtDefensa.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDefensa.setColumns(10);
+		txtDefensa.setEditable(false);
 		
 		JLabel lblEvasion = new JLabel("EVASION:");
 		txtEvasion = new JTextField();
 		txtEvasion.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEvasion.setColumns(10);
+		txtEvasion.setEditable(false);
 		
 		JLabel lblPuntosTotales = new JLabel("PUNTOS TOTALES");
 		txtPuntosTotales = new JTextField();

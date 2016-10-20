@@ -28,16 +28,18 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private JComboBox cmbPersonaje;
 	
-	private JButton btnBuscar;
+	private JButton btnModificar;
 	private JButton btnCancelar;
+	private JButton btnBorrar;
 	
 	/**
 	 * Create the frame.
 	 */
 	public frmBuscarPersonaje() {
-		initialize();
+		setTitle("Modificar o Borrar Personaje");
+		inicializar();
 		this.ctrlPersonaje = new ControladorPersonaje();
-		this.fillComboBox();
+		this.cargarComboBox();
 	}
 	/**
 	 * Frame Methods
@@ -47,10 +49,15 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 	}
 	
 	private void actionHandler(Object source) {
-		if(source == btnBuscar) {
+		if(source == btnModificar) {
 			frmCargarPuntos frmCPts = new frmCargarPuntos((Personaje)(cmbPersonaje.getSelectedItem()));
 			frmCPts.setLocationRelativeTo(null);
 			frmCPts.setVisible(true);
+		} else if(source == btnBorrar) {
+			borrarPersonaje((Personaje)(cmbPersonaje.getSelectedItem()));
+			frmPersonaje frmP = new frmPersonaje();
+			frmP.setLocationRelativeTo(null);
+		    frmP.setVisible(true);
 		} else if(source == btnCancelar) {
 			frmPersonaje frmP = new frmPersonaje();
 			frmP.setLocationRelativeTo(null);
@@ -61,17 +68,21 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 	    dispose();	
 	}
 	
-	private void fillComboBox() {
+	private void cargarComboBox() {
 		ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
 		for (Personaje personaje : personajes) {
 			cmbPersonaje.addItem(personaje);
 		}
 	}
+	private void borrarPersonaje(Personaje personaje)
+	{
+		ctrlPersonaje.borrar(personaje);
+	}
 	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void inicializar() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -81,44 +92,54 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 		
 		JLabel lblNombre = new JLabel("NOMBRE");
 		
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(this);
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(this);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(this);
 		
 		cmbPersonaje = new JComboBox();
 		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(this);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap(56, GroupLayout.PREFERRED_SIZE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addContainerGap()
 							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-							.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(188)
-							.addComponent(lblNombre)))
+							.addGap(150))
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNombre)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(cmbPersonaje, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+							.addGap(57)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnBorrar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnModificar, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)))
 					.addContainerGap())
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(141, Short.MAX_VALUE)
-					.addComponent(cmbPersonaje, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-					.addGap(129))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(47)
-					.addComponent(lblNombre)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(cmbPersonaje, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnCancelar)
-						.addComponent(btnBuscar))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(54)
+							.addComponent(btnModificar)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnBorrar))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(74)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(cmbPersonaje, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNombre))))
+					.addPreferredGap(ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+					.addComponent(btnCancelar)
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);

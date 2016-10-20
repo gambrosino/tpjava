@@ -45,6 +45,9 @@ public class ControladorPersonaje {
 			dataPersonaje.update(personaje);
 		}	
 	}
+	public void borrar(Personaje personaje){
+		dataPersonaje.delete(personaje);
+	}
 	
 	public Personaje getBy(int id) {
 		return this.dataPersonaje.getBy(id);

@@ -38,9 +38,10 @@ public class frmJugar extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public frmJugar() {
-		initialize();
+		setTitle("Preparar Partida");
+		inicializar();
 		this.ctrlPersonaje = new ControladorPersonaje();
-		this.fillComboBox();
+		this.cargarComboBox();
 	}
 	
 	/**
@@ -92,7 +93,7 @@ public class frmJugar extends JFrame implements ActionListener{
 		return true;
 	}
 
-	private void fillComboBox() {
+	private void cargarComboBox() {
 	    ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
 	    for(Personaje personaje : personajes ){
 	    	cmbJugador1.addItem(personaje);
@@ -103,7 +104,7 @@ public class frmJugar extends JFrame implements ActionListener{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize() {
+	public void inicializar() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
