@@ -1,3 +1,6 @@
+# Environment configuration file
+src/config.properties
+
 *.class
 
 # Mobile Tools for Java (J2ME)

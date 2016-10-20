@@ -1,16 +1,24 @@
 package data;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
+
 import utils.*;
+
+
 
 public class FactoryConexion {
 
 	private String dbDriver="com.mysql.jdbc.Driver";
 	private String host="localhost";
 	private String port="3306";
-	private String user="root";
-	private String pass="";
-	private String db="tpjava";
+	private String user;
+	private String pass;
+	private String db;
 	private String dbType="mysql";
 	
 	private Connection conn;
@@ -29,8 +37,28 @@ public class FactoryConexion {
 	public static FactoryConexion getInstancia() throws ApplicationException{
 		if (instancia==null){
 			instancia = new FactoryConexion();
+			instancia.setAttributes();
 		}
 		return instancia;
+	}
+	
+	private void setAttributes() throws ApplicationException {
+		File configFile = new File("./src/config.properties"); 
+		try {
+		    FileReader reader = new FileReader(configFile);
+		    Properties props = new Properties();
+		    props.load(reader);
+		    
+		    user = props.getProperty("user");
+		    pass = props.getProperty("password");
+		    db = props.getProperty("db_name");
+		    
+		    reader.close();
+		} catch (FileNotFoundException e) {
+			throw new ApplicationException("No se encontró el archivo de configuración",e);
+		} catch (IOException e) {
+			throw new ApplicationException("Error al abrir el archivo de configuración",e);
+		}	
 	}
 	
 	public Connection getConn(){
