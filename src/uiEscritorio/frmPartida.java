@@ -82,8 +82,7 @@ public class frmPartida extends JFrame implements ActionListener{
 		// TODO
 		// definir el turno
 		// deshabilitar los botones segun sea el turno
-		this.fillForm();
-		
+		this.fillForm();	
 	}
 	
 	private void fillForm(){
