@@ -50,26 +50,29 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 			abrirCargarPuntos();
 		} 
 		else if(accion == btnBorrar) {
+			//TODO hacer validacion antes de eliminar
 			eliminarPersonaje((Personaje)(cmbPersonaje.getSelectedItem()));
-			abrirPersonaje();
+			cargarComboBox();
 		} 
 		else if(accion == btnCancelar) {
 			abrirPersonaje();
 		}
-		
-	    cerrarVentana();	
 	}
 	
 	private void abrirCargarPuntos() {
 		frmCargarPuntos frmCargarPuntos = new frmCargarPuntos((Personaje)(cmbPersonaje.getSelectedItem()));
 		frmCargarPuntos.setLocationRelativeTo(null);
 		frmCargarPuntos.setVisible(true);
+		
+	    cerrarVentana();
 	}
 	
 	private void abrirPersonaje() {
 		frmPersonaje frmPersonaje = new frmPersonaje();
 		frmPersonaje.setLocationRelativeTo(null);
 		frmPersonaje.setVisible(true);
+
+	    cerrarVentana();
 	}
 	
 	private void cerrarVentana() {
@@ -79,6 +82,9 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 	
 	private void cargarComboBox() {
 		ArrayList<Personaje> personajes = this.ctrlPersonaje.traerTodos();
+		
+		cmbPersonaje.removeAllItems();
+		
 		for (Personaje personaje : personajes) {
 			cmbPersonaje.addItem(personaje);
 		}

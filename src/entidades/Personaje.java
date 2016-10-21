@@ -37,6 +37,10 @@ public class Personaje {
 	
 	public int getPuntosDisponibles() { return puntosDisponibles; }
 	
+	public int getPuntosTotales() {
+		return this.vida + this.energia + this.defensa + this.evasion + this.puntosDisponibles;
+	}
+
 	public String toString() { return this.nombre; }
 
 	//Setters

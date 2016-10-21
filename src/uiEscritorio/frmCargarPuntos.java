@@ -113,13 +113,12 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	
 	public void llenarCampos() {
 		txtNombre.setText(personaje.getNombre());
-		txtPuntosTotales.setText(String.valueOf(personaje.getPuntosDisponibles()));
+		txtPuntosTotales.setText(String.valueOf(personaje.getPuntosTotales()));
 		txtPuntosDisponibles.setText(String.valueOf(personaje.getPuntosDisponibles()));
 		txtVida.setText(String.valueOf(personaje.getVida()));
 		txtEnergia.setText(String.valueOf(personaje.getEnergia()));
 		txtDefensa.setText(String.valueOf(personaje.getDefensa()));
 		txtEvasion.setText(String.valueOf(personaje.getEvasion()));
-		//txtPuntosTotales
 	}
 	
 	private void incrementar(JTextField input) {
