@@ -1,15 +1,11 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,25 +30,43 @@ public class frmPersonaje extends JFrame implements ActionListener {
 	 * Frame Methods
 	 */
 	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getSource()); 
+		manejador(e.getSource()); 
 	}
 	
-	private void actionHandler(Object source) 
+	private void manejador(Object accion) 
 	{
-		if(source == btnCrearPersonaje) {
-			frmCrearPersonaje frmCP = new frmCrearPersonaje();
-			frmCP.setLocationRelativeTo(null);
-			frmCP.setVisible(true);
-		} else if(source == btnModificarBorrar) {
-			frmBuscarPersonaje frmBP = new frmBuscarPersonaje();
-			frmBP.setLocationRelativeTo(null);
-			frmBP.setVisible(true);
-		} else if(source == btnAtras) {
-			frmMenuPrincipal frmMP = new frmMenuPrincipal();
-			frmMP.setLocationRelativeTo(null);
-		    frmMP.setVisible(true);
+		if(accion == btnCrearPersonaje) {
+			abrirCrearPersonaje();
+		}
+		else if(accion == btnModificarBorrar) { 
+			abrirBuscarPersonaje();
+		}
+		else if(accion == btnAtras) { 
+			abrirMenuPrincipal();
 		}
 		
+		cerrarVentana();
+	}
+
+	private void abrirMenuPrincipal() {
+		frmMenuPrincipal frmMenuPrincipal = new frmMenuPrincipal();
+		frmMenuPrincipal.setLocationRelativeTo(null);
+		frmMenuPrincipal.setVisible(true);
+	}
+
+	private void abrirBuscarPersonaje() {
+		frmBuscarPersonaje frmBuscarPersonaje = new frmBuscarPersonaje();
+		frmBuscarPersonaje.setLocationRelativeTo(null);
+		frmBuscarPersonaje.setVisible(true);
+	}
+	
+	private void abrirCrearPersonaje() {
+		frmCrearPersonaje frmCrearPersonaje = new frmCrearPersonaje();
+		frmCrearPersonaje.setLocationRelativeTo(null);
+		frmCrearPersonaje.setVisible(true);
+	}
+	
+	private void cerrarVentana(){
 		setVisible(false);
 		dispose();
 	}

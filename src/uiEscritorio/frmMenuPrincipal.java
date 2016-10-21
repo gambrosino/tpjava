@@ -1,6 +1,5 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -51,24 +49,36 @@ public class frmMenuPrincipal extends JFrame implements ActionListener {
 	 * Frame Methods
 	 */
 	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getSource()); 
+		manejador(e.getSource()); 
 	}
 	
-	private void actionHandler(Object source) 
+	private void manejador(Object accion) 
 	{
-		if(source == btnJugar) {
-			frmJugar frmj = new frmJugar();
-			frmj.setLocationRelativeTo(null);
-			frmj.setVisible(true);
+		if(accion == btnJugar) {
+			abrirJugar();
 		}
-		if(source == btnPersonajes) {
-			frmPersonaje frmpj = new frmPersonaje();
-			frmpj.setLocationRelativeTo(null);
-			frmpj.setVisible(true);
+		else if(accion == btnPersonajes) {
+			abrirPersonaje();
 		} 
 
+		cerrarVentana();
+	}
+
+	private void cerrarVentana() {
 		setVisible(false);
 		dispose();
+	}
+
+	private void abrirPersonaje() {
+		frmPersonaje frmPersonaje = new frmPersonaje();
+		frmPersonaje.setLocationRelativeTo(null);
+		frmPersonaje.setVisible(true);
+	}
+
+	private void abrirJugar() {
+		frmJugar frmJugar = new frmJugar();
+		frmJugar.setLocationRelativeTo(null);
+		frmJugar.setVisible(true);
 	}
 	
 	/**

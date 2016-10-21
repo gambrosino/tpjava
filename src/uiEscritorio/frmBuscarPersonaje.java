@@ -1,14 +1,10 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
@@ -39,44 +35,58 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 		setTitle("Modificar o Borrar Personaje");
 		inicializar();
 		this.ctrlPersonaje = new ControladorPersonaje();
-		this.cargarComboBox();
+		cargarComboBox();
 	}
+	
 	/**
 	 * Frame Methods
 	 */
 	public void actionPerformed(ActionEvent e) {
-		actionHandler(e.getSource());
+		manejador(e.getSource());
 	}
 	
-	private void actionHandler(Object source) {
-		if(source == btnModificar) {
-			frmCargarPuntos frmCPts = new frmCargarPuntos((Personaje)(cmbPersonaje.getSelectedItem()));
-			frmCPts.setLocationRelativeTo(null);
-			frmCPts.setVisible(true);
-		} else if(source == btnBorrar) {
-			borrarPersonaje((Personaje)(cmbPersonaje.getSelectedItem()));
-			frmPersonaje frmP = new frmPersonaje();
-			frmP.setLocationRelativeTo(null);
-		    frmP.setVisible(true);
-		} else if(source == btnCancelar) {
-			frmPersonaje frmP = new frmPersonaje();
-			frmP.setLocationRelativeTo(null);
-		    frmP.setVisible(true);
+	private void manejador(Object accion) {
+		if(accion == btnModificar) {
+			abrirCargarPuntos();
+		} 
+		else if(accion == btnBorrar) {
+			eliminarPersonaje((Personaje)(cmbPersonaje.getSelectedItem()));
+			abrirPersonaje();
+		} 
+		else if(accion == btnCancelar) {
+			abrirPersonaje();
 		}
 		
-	    setVisible(false);
-	    dispose();	
+	    cerrarVentana();	
+	}
+	
+	private void abrirCargarPuntos() {
+		frmCargarPuntos frmCargarPuntos = new frmCargarPuntos((Personaje)(cmbPersonaje.getSelectedItem()));
+		frmCargarPuntos.setLocationRelativeTo(null);
+		frmCargarPuntos.setVisible(true);
+	}
+	
+	private void abrirPersonaje() {
+		frmPersonaje frmPersonaje = new frmPersonaje();
+		frmPersonaje.setLocationRelativeTo(null);
+		frmPersonaje.setVisible(true);
+	}
+	
+	private void cerrarVentana() {
+		setVisible(false);
+	    dispose();
 	}
 	
 	private void cargarComboBox() {
-		ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
+		ArrayList<Personaje> personajes = this.ctrlPersonaje.traerTodos();
 		for (Personaje personaje : personajes) {
 			cmbPersonaje.addItem(personaje);
 		}
 	}
-	private void borrarPersonaje(Personaje personaje)
+	
+	private void eliminarPersonaje(Personaje personaje)
 	{
-		ctrlPersonaje.borrar(personaje);
+		ctrlPersonaje.eliminar(personaje);
 	}
 	
 	/**

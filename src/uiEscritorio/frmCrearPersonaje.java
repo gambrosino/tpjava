@@ -1,8 +1,5 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,14 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 import negocio.ControladorPersonaje;
 import entidades.Personaje;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import javax.swing.SwingConstants;
 
 public class frmCrearPersonaje extends JFrame implements ActionListener{
 
@@ -31,6 +27,7 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	
 	private JButton btnCrear;
 	private JButton btnCancelar;
+	
 	private JLabel lblMensaje;
 
 	/**
@@ -46,25 +43,37 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	 * Frame Methods
 	 */
 	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getSource()); 
+		manejador(e.getSource()); 
 	}
 	
-	private void actionHandler(Object source) 
+	private void manejador(Object accion) 
 	{
-		if(source == btnCrear) {
-			frmCargarPuntos frmCPts = new frmCargarPuntos(ctrlPersonaje.nuevoPersonaje(txtNombre.getText()));
-			frmCPts.setLocationRelativeTo(null);
-			frmCPts.setVisible(true);
+		if(accion == btnCrear) {
+			abrirCargarPuntos();
 		}
-		else if (source == btnCancelar) {
-			frmPersonaje frmP = new frmPersonaje();
-			frmP.setLocationRelativeTo(null);
-		    frmP.setVisible(true);
+		else if (accion == btnCancelar) {
+			abrirPersonaje();
 		}
 		
-	    setVisible(false);
-	    dispose();
+	    cerrarVentana();
     }
+
+	private void cerrarVentana() {
+		setVisible(false);
+	    dispose();
+	}
+
+	private void abrirPersonaje() {
+		frmPersonaje frmPersonaje = new frmPersonaje();
+		frmPersonaje.setLocationRelativeTo(null);
+		frmPersonaje.setVisible(true);
+	}
+
+	private void abrirCargarPuntos() {
+		frmCargarPuntos frmCargarPuntos = new frmCargarPuntos(ctrlPersonaje.crear(txtNombre.getText()));
+		frmCargarPuntos.setLocationRelativeTo(null);
+		frmCargarPuntos.setVisible(true);
+	}
 
 	/**
 	 * Initialize the contents of the frame.

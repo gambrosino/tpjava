@@ -1,7 +1,5 @@
 package uiEscritorio;
 
-import java.util.Hashtable;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,25 +9,26 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 import entidades.Personaje;
 import negocio.ControladorPersonaje;
 
 import java.awt.Insets;
-import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.SwingConstants;
+import java.util.Hashtable;
 
 public class frmCargarPuntos extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
+	
+	private JTextField txtNombre;
 	private JTextField txtVida;
 	private JTextField txtEnergia;
-	private JTextField txtRestantes;
-	private JTextField txtNombre;
 	private JTextField txtDefensa;
 	private JTextField txtEvasion;
+	private JTextField txtPuntosDisponibles;
 	private JTextField txtPuntosTotales;
 	
 	private JButton btnGuardar;
@@ -62,35 +61,43 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	 * Frame Methods
 	 */
 	public void actionPerformed(ActionEvent e) { 
-		actionHandler(e.getSource());
+		manejador(e.getSource());
 	}
 	
-	private void actionHandler(Object source) 
+	private void manejador(Object accion) 
 	{
-		if (source == btnGuardar) guardar();
-		else if(source == btnVidaU) incrementar(txtVida);
-		else if(source == btnVidaD) decrementar(txtVida);
-		else if(source == btnEnergiaU) incrementar(txtEnergia);
-		else if(source == btnEnergiaD) decrementar(txtEnergia);
-		else if(source == btnDefensaU) incrementar(txtDefensa);
-		else if(source == btnDefensaD) decrementar(txtDefensa);
-		else if(source == btnEvasionU) incrementar(txtEvasion);
-		else if(source == btnEvasionD) decrementar(txtEvasion);
+		if (accion == btnGuardar) guardar();
+		else if(accion == btnVidaU) incrementar(txtVida);
+		else if(accion == btnVidaD) decrementar(txtVida);
+		else if(accion == btnEnergiaU) incrementar(txtEnergia);
+		else if(accion == btnEnergiaD) decrementar(txtEnergia);
+		else if(accion == btnDefensaU) incrementar(txtDefensa);
+		else if(accion == btnDefensaD) decrementar(txtDefensa);
+		else if(accion == btnEvasionU) incrementar(txtEvasion);
+		else if(accion == btnEvasionD) decrementar(txtEvasion);
 		
-		if (source == btnGuardar || source == btnCancelar) {
-			frmPersonaje frmPersonaje = new frmPersonaje();
-			frmPersonaje.setLocationRelativeTo(null);
-			frmPersonaje.setVisible(true);
-			
-			setVisible(false);
-		    dispose();	
+		if (accion == btnGuardar || accion == btnCancelar) {
+			abrirPersonaje();
 		}
     }
+
+	private void abrirPersonaje() {
+		frmPersonaje frmPersonaje = new frmPersonaje();
+		frmPersonaje.setLocationRelativeTo(null);
+		frmPersonaje.setVisible(true);
+		
+		cerrarVentana();	
+	}
+
+	private void cerrarVentana() {
+		setVisible(false);
+	    dispose();
+	}
 	
 	private void guardar() {
 		Hashtable<String, String> atributos = getAtributos();
 		
-		ctrlPersonaje.guardar(personaje, atributos);
+		ctrlPersonaje.actualizar(personaje, atributos);
 	}
 
 	private Hashtable<String, String> getAtributos() {
@@ -99,7 +106,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		atributos.put("energia", txtEnergia.getText());
 		atributos.put("defensa", txtDefensa.getText());
 		atributos.put("evasion", txtEvasion.getText());
-		atributos.put("puntosDisponibles", txtRestantes.getText());
+		atributos.put("puntosDisponibles", txtPuntosDisponibles.getText());
 		
 		return atributos;
 	}
@@ -107,7 +114,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	public void llenarCampos() {
 		txtNombre.setText(personaje.getNombre());
 		txtPuntosTotales.setText(String.valueOf(personaje.getPuntosDisponibles()));
-		txtRestantes.setText(String.valueOf(personaje.getPuntosDisponibles()));
+		txtPuntosDisponibles.setText(String.valueOf(personaje.getPuntosDisponibles()));
 		txtVida.setText(String.valueOf(personaje.getVida()));
 		txtEnergia.setText(String.valueOf(personaje.getEnergia()));
 		txtDefensa.setText(String.valueOf(personaje.getDefensa()));
@@ -116,20 +123,20 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	}
 	
 	private void incrementar(JTextField input) {
-		int puntosDisponibles = Integer.parseInt(txtRestantes.getText());
+		int puntosDisponibles = Integer.parseInt(txtPuntosDisponibles.getText());
 		if(puntosDisponibles > 0) {
 			int valorAtributo = Integer.parseInt(input.getText());
 			input.setText(String.valueOf(++valorAtributo));	
-			txtRestantes.setText(String.valueOf(--puntosDisponibles));
+			txtPuntosDisponibles.setText(String.valueOf(--puntosDisponibles));
 		}
 	}
 	
 	private void decrementar(JTextField input) {
 		int valorAtributo = Integer.parseInt(input.getText().toString());
-		int puntosDisponibles = Integer.parseInt(txtRestantes.getText());
+		int puntosDisponibles = Integer.parseInt(txtPuntosDisponibles.getText());
 		if(valorAtributo > 0 ) {
 			input.setText(String.valueOf(--valorAtributo));
-			txtRestantes.setText(String.valueOf(++puntosDisponibles));
+			txtPuntosDisponibles.setText(String.valueOf(++puntosDisponibles));
 		}		
 	}
 	
@@ -137,7 +144,6 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	public void inicializar() {
-
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -152,10 +158,10 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		txtNombre.setColumns(10);
 		
 		JLabel lblRestantes = new JLabel("RESTANTES");
-		txtRestantes = new JTextField();
-		txtRestantes.setHorizontalAlignment(SwingConstants.CENTER);
-		txtRestantes.setEditable(false);
-		txtRestantes.setColumns(10);
+		txtPuntosDisponibles = new JTextField();
+		txtPuntosDisponibles.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPuntosDisponibles.setEditable(false);
+		txtPuntosDisponibles.setColumns(10);
 		
 		JLabel lblVida = new JLabel("VIDA:");
 		txtVida = new JTextField();
@@ -237,7 +243,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 								.addComponent(lblNombre)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(txtRestantes, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+										.addComponent(txtPuntosDisponibles, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
 										.addComponent(lblRestantes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(txtPuntosTotales, Alignment.LEADING, 0, 0, Short.MAX_VALUE))
 									.addGap(17))
@@ -330,7 +336,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblRestantes)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtRestantes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(txtPuntosDisponibles, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())))
 		);
 		contentPane.setLayout(gl_contentPane);

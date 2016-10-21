@@ -3,7 +3,7 @@ package negocio;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import data.DataPersonaje;
+import datos.DatosPersonaje;
 import entidades.Personaje;
 
 import utils.ApplicationException;
@@ -14,24 +14,24 @@ public class ControladorPersonaje {
 	
 	private Personaje personaje;
 	
-	private data.DataPersonaje dataPersonaje;
+	private datos.DatosPersonaje datosPersonaje;
 
 	public ControladorPersonaje() {
-		personajes = new ArrayList<Personaje>();
-		dataPersonaje = new DataPersonaje();
+		this.personajes = new ArrayList<Personaje>();
+		this.datosPersonaje = new DatosPersonaje();
 	}
 
-	public Personaje getActual() {
+	public Personaje traerActual() {
 		return this.personaje;
 	}
 	
-	public Personaje nuevoPersonaje(String nombre) {
-		personaje = new Personaje(nombre);
+	public Personaje crear(String nombre) {
+		this.personaje = new Personaje(nombre);
 		// validar que no exista el nombre
 		return personaje;
 	}
 	
-	public void guardar(Personaje personaje, Hashtable<String, String> atributos) {
+	public void actualizar(Personaje personaje, Hashtable<String, String> atributos) {
 		// TODO validar datos, manejar excepciones
 		personaje.setVida(Integer.parseInt(atributos.get("vida")));
 		personaje.setEnergia(Integer.parseInt(atributos.get("energia")));
@@ -40,21 +40,21 @@ public class ControladorPersonaje {
 		personaje.setPuntosDisponibles(Integer.parseInt(atributos.get("puntosDisponibles")));
 		
 		if (personaje.getId() == 0) {
-			dataPersonaje.add(personaje);
+			datosPersonaje.crear(personaje);
 		} else {
-			dataPersonaje.update(personaje);
+			datosPersonaje.actualizar(personaje);
 		}	
 	}
-	public void borrar(Personaje personaje){
-		dataPersonaje.delete(personaje);
+	public void eliminar(Personaje personaje){
+		datosPersonaje.eliminar(personaje);
 	}
 	
-	public Personaje getBy(int id) {
-		return this.dataPersonaje.getBy(id);
+	public Personaje traerPor(int id) {
+		return this.datosPersonaje.traerPor(id);
 	}
 	
-	public ArrayList<Personaje> getAll(){
-		personajes = this.dataPersonaje.getAll();
+	public ArrayList<Personaje> traerTodos(){
+		personajes = this.datosPersonaje.traerTodos();
 		return personajes;
 	}
 

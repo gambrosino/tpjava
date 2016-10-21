@@ -1,8 +1,5 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -41,20 +38,21 @@ public class frmJugar extends JFrame implements ActionListener{
 		setTitle("Preparar Partida");
 		inicializar();
 		this.ctrlPersonaje = new ControladorPersonaje();
-		this.cargarComboBox();
+		cargarComboBox();
 	}
 	
 	/**
 	 * Frame Methods
 	 */
 	public void actionPerformed(ActionEvent e) {
-		actionHandler(e.getSource());
+		manejador(e.getSource());
 	}
 	
-	private void actionHandler(Object source) {
-		if(source == btnAtras){
-			volverMenuPrincipal();
-		}else if(source == btnJugar){
+	private void manejador(Object accion) {
+		if(accion == btnAtras){
+			abrirMenuPrincipal();
+		}
+		else if(accion == btnJugar){
 			if(this.validarSeleccionPersonaje()) {
 				comenzarPartida();
 			}
@@ -62,21 +60,22 @@ public class frmJugar extends JFrame implements ActionListener{
 	}
 	
 	private void comenzarPartida() {
-		frmPartida frmPartida_absPane = new frmPartida((Personaje)(cmbJugador1.getSelectedItem()),
+		frmPartida frmPartida = new frmPartida((Personaje)(cmbJugador1.getSelectedItem()),
 				   								(Personaje)(cmbJugador2.getSelectedItem()));
-		frmPartida_absPane.setLocationRelativeTo(null);
-		frmPartida_absPane.setVisible(true);
-		cerrarFormulario();
+		
+		frmPartida.setLocationRelativeTo(null);
+		frmPartida.setVisible(true);
+		cerrarVentana();
 	}
 	
-	private void volverMenuPrincipal() {
+	private void abrirMenuPrincipal() {
 		frmMenuPrincipal frmMP = new frmMenuPrincipal();
 		frmMP.setLocationRelativeTo(null);
 		frmMP.setVisible(true);
-		cerrarFormulario();
+		cerrarVentana();
 	}
 	
-	private void cerrarFormulario() {
+	private void cerrarVentana() {
 		setVisible(false);
 		dispose();
 	}
@@ -94,7 +93,7 @@ public class frmJugar extends JFrame implements ActionListener{
 	}
 
 	private void cargarComboBox() {
-	    ArrayList<Personaje> personajes = this.ctrlPersonaje.getAll();
+	    ArrayList<Personaje> personajes = this.ctrlPersonaje.traerTodos();
 	    for(Personaje personaje : personajes ){
 	    	cmbJugador1.addItem(personaje);
 	    	cmbJugador2.addItem(personaje);

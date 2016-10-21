@@ -1,4 +1,4 @@
-package data;
+package datos;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,9 +55,9 @@ public class FactoryConexion {
 		    
 		    reader.close();
 		} catch (FileNotFoundException e) {
-			throw new ApplicationException("No se encontró el archivo de configuración",e);
+			throw new ApplicationException("No se encontrï¿½ el archivo de configuraciï¿½n",e);
 		} catch (IOException e) {
-			throw new ApplicationException("Error al abrir el archivo de configuración",e);
+			throw new ApplicationException("Error al abrir el archivo de configuraciï¿½n",e);
 		}	
 	}
 	

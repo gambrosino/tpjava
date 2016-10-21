@@ -1,4 +1,4 @@
-package data;
+package datos;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import entidades.Personaje;
 import utils.ApplicationException;
 
-public class DataPersonaje {
+public class DatosPersonaje {
 
-	public DataPersonaje() {
+	public DatosPersonaje() {
 		
 	}
 	
-	public Personaje getBy(int id) {
+	public Personaje traerPor(int id) {
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		Personaje personaje = null;
@@ -53,7 +53,7 @@ public class DataPersonaje {
 		return personaje;
 	}
 	
-	public ArrayList<Personaje> getAll(){
+	public ArrayList<Personaje> traerTodos(){
 		
 		ArrayList<Personaje> personajes = new ArrayList<Personaje>();
 		ResultSet rs=null;
@@ -96,7 +96,7 @@ public class DataPersonaje {
 		return personajes;
 	}
 	
-	public void add(Personaje personaje) {
+	public void crear(Personaje personaje) {
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		try {
@@ -129,7 +129,7 @@ public class DataPersonaje {
 		}
 	}
 	
-	public void update(Personaje personaje) {
+	public void actualizar(Personaje personaje) {
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		
@@ -165,7 +165,7 @@ public class DataPersonaje {
 		}
 	}
 	
-	public void delete(Personaje personaje) {
+	public void eliminar(Personaje personaje) {
 		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		

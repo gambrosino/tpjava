@@ -1,16 +1,8 @@
 package uiEscritorio;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -19,18 +11,19 @@ import javax.swing.SwingConstants;
 import negocio.ControladorPersonaje;
 import entidades.Personaje;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class frmPartida extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	
 	private JTextField txtJugador1;
 	private JTextField txtJugador2;
-	
 	private JTextField txtVida1;
 	private JTextField txtEnergia1;
 	private JTextField txtDefensa1;
 	private JTextField txtEvasion1;
-
 	private JTextField txtVida2;
 	private JTextField txtEnergia2;
 	private JTextField txtDefensa2;
@@ -40,10 +33,10 @@ public class frmPartida extends JFrame implements ActionListener{
 	private JButton btnDefender1;
 	private JButton btnAtacar2;
 	private JButton btnDefender2;
+	
 	private ControladorPersonaje ctrlPersonaje;
 	private Personaje jugador1;
 	private Personaje jugador2;
-	private JLabel lblJugador2;
 	
 	/**
 	 * Create the frame.
@@ -61,20 +54,20 @@ public class frmPartida extends JFrame implements ActionListener{
 	 * Frame Methods
 	 */
 	public void actionPerformed(ActionEvent e) {
-		actionHandler(e.getSource());	
+		manejador(e.getSource());	
 	}
 	
-	private void actionHandler(Object source) {
-		if(source == btnAtacar1) {
+	private void manejador(Object accion) {
+		if(accion == btnAtacar1) {
 			
 		}
-		else if(source == btnDefender1) {
+		else if(accion == btnDefender1) {
 			
 		}
-		else if(source == btnAtacar2) {
+		else if(accion == btnAtacar2) {
 			
 		}
-		else if(source == btnDefender2) {
+		else if(accion == btnDefender2) {
 			
 		}
 	}
@@ -83,7 +76,7 @@ public class frmPartida extends JFrame implements ActionListener{
 		// TODO
 		// definir el turno
 		// deshabilitar los botones segun sea el turno
-		this.llenarCampos();	
+		llenarCampos();	
 	}
 	
 	private void llenarCampos(){
@@ -100,7 +93,11 @@ public class frmPartida extends JFrame implements ActionListener{
 		txtDefensa2.setText(String.valueOf(jugador2.getDefensa()));
 		txtEvasion2.setText(String.valueOf(jugador2.getEvasion()));
 	}
+	
 
+	/**
+	 * Initialize the contents of the frame.
+	 */
 	public void inicializar() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -118,8 +115,8 @@ public class frmPartida extends JFrame implements ActionListener{
 		txtJugador1.setHorizontalAlignment(SwingConstants.CENTER);
 		txtJugador1.setEditable(false);
 		txtJugador1.setBounds(82, 47, 87, 20);
-		contentPane.add(txtJugador1);
 		txtJugador1.setColumns(10);
+		contentPane.add(txtJugador1);
 		
 		JLabel lblVida1 = new JLabel("VIDA");
 		lblVida1.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -145,37 +142,40 @@ public class frmPartida extends JFrame implements ActionListener{
 		txtVida1.setHorizontalAlignment(SwingConstants.CENTER);
 		txtVida1.setEditable(false);
 		txtVida1.setBounds(123, 92, 46, 20);
-		contentPane.add(txtVida1);
 		txtVida1.setColumns(10);
+		contentPane.add(txtVida1);
 		
 		txtEnergia1 = new JTextField();
 		txtEnergia1.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEnergia1.setEditable(false);
 		txtEnergia1.setBounds(123, 117, 46, 20);
-		contentPane.add(txtEnergia1);
 		txtEnergia1.setColumns(10);
+		contentPane.add(txtEnergia1);
 		
 		txtDefensa1 = new JTextField();
 		txtDefensa1.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDefensa1.setEditable(false);
 		txtDefensa1.setBounds(123, 142, 46, 20);
-		contentPane.add(txtDefensa1);
 		txtDefensa1.setColumns(10);
+		contentPane.add(txtDefensa1);
 		
 		txtEvasion1 = new JTextField();
 		txtEvasion1.setHorizontalAlignment(SwingConstants.CENTER);
 		txtEvasion1.setEditable(false);
 		txtEvasion1.setBounds(123, 167, 46, 20);
-		contentPane.add(txtEvasion1);
 		txtEvasion1.setColumns(10);
+		contentPane.add(txtEvasion1);
 		
 		btnAtacar1 = new JButton("Atacar");
 		btnAtacar1.setBounds(111, 227, 89, 23);
-		contentPane.add(btnAtacar1);
-		
 		btnDefender1 = new JButton("Defender");
 		btnDefender1.setBounds(8, 227, 89, 23);
+		contentPane.add(btnAtacar1);
 		contentPane.add(btnDefender1);
+		
+		JLabel lblJugador2 = new JLabel("JUGADOR 2");
+		lblJugador2.setBounds(265, 22, 87, 14);
+		contentPane.add(lblJugador2);
 		
 		txtJugador2 = new JTextField();
 		txtJugador2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -230,14 +230,9 @@ public class frmPartida extends JFrame implements ActionListener{
 		
 		btnAtacar2 = new JButton("Atacar");
 		btnAtacar2.setBounds(335, 227, 89, 23);
-		contentPane.add(btnAtacar2);
-		
 		btnDefender2 = new JButton("Defender");
 		btnDefender2.setBounds(232, 227, 89, 23);
+		contentPane.add(btnAtacar2);
 		contentPane.add(btnDefender2);
-		
-		lblJugador2 = new JLabel("JUGADOR 2");
-		lblJugador2.setBounds(265, 22, 87, 14);
-		contentPane.add(lblJugador2);
 	}
 }
