@@ -5,16 +5,16 @@ public class Partida {
 	//Attributes
 	private int turno;
 	private static int puntos_en_disputa;
-	//Player a
-	private Personaje jugador_a; 
-	//Player b
-	private Personaje jugador_b;
+	//Jugador1
+	private Personaje jugador1; 
+	//Jugador2
+	private Personaje jugador2;
 		
 	//Constructor	
-	public Partida(Personaje jugador_a, Personaje jugador_b) {
-		 this.jugador_a = jugador_a;
-		 this.jugador_b = jugador_b;
-		 turno = jugador_a.getId();
+	public Partida(Personaje jugador1, Personaje jugador2) {
+		 this.jugador1 = jugador1;
+		 this.jugador2 = jugador2;
+		 turno = jugador1.getId();
 	}
 
 	//Getters
@@ -22,9 +22,9 @@ public class Partida {
 
 	public static int getPuntos_en_disputa() { return puntos_en_disputa; }
 
-	public Personaje getJugador_a() { return jugador_a; }
+	public Personaje getJugador1() { return jugador1; }
 
-	public Personaje getJugador_b() { return jugador_b; }
+	public Personaje getJugador2() { return jugador2; }
 	
 	//Setters
 	public void setTurno(int turno) { this.turno = turno; }
@@ -33,7 +33,9 @@ public class Partida {
 		Partida.puntos_en_disputa = puntos_en_disputa;
 	}
 
-	public void setJugador_a(Personaje jugador_a) { this.jugador_a = jugador_a; }
+	public void setJugador1(Personaje jugador1) { this.jugador1 = jugador1; }
 
-	public void setJugador_b(Personaje jugador_b) { this.jugador_b = jugador_b; }
+	public void setJugador2(Personaje jugador2) { this.jugador2 = jugador2; }
+	
+	
 }
