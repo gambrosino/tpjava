@@ -4,6 +4,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -49,10 +50,8 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 		if(accion == btnModificar) {
 			abrirCargarPuntos();
 		} 
-		else if(accion == btnBorrar) {
-			//TODO hacer validacion antes de eliminar
+		else if(accion == btnBorrar) {		
 			eliminarPersonaje((Personaje)(cmbPersonaje.getSelectedItem()));
-			cargarComboBox();
 		} 
 		else if(accion == btnCancelar) {
 			abrirPersonaje();
@@ -92,7 +91,20 @@ public class frmBuscarPersonaje extends JFrame implements ActionListener{
 	
 	private void eliminarPersonaje(Personaje personaje)
 	{
-		ctrlPersonaje.eliminar(personaje);
+		if (confirmarEliminacion()) {
+			ctrlPersonaje.eliminar(personaje);
+			cargarComboBox();
+		}
+	}
+	
+	private boolean confirmarEliminacion() {
+		
+		int dialogButton = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas eliminar el personaje?","WARNING", JOptionPane.YES_NO_OPTION);
+		
+		if (dialogButton == 0)
+			return true;
+		
+		return false;
 	}
 	
 	/**
