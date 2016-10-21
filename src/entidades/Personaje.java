@@ -86,4 +86,24 @@ public class Personaje {
 		}
 		return false ;
 	}
+	
+	//Acciones
+	
+	 public void atacar(int puntos) {
+		 energia -= puntos;
+	 }
+	 
+	 public void intentarEvadir(int puntosAtaque) {
+		 int umbralEvasion = (int)(Math.random() * 100);
+		 if (getEvasion() < umbralEvasion) {
+			 vida -= puntosAtaque;
+		 }
+	 }
+	 
+	 public void defender(){
+		 int energiaARecuperar = getEnergia() * getDefensa() / 100;
+		 int vidaARecuperar = getVida() * getDefensa() / 250;
+	 }
+	
+	
 }

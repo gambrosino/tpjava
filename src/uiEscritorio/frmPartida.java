@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import negocio.ControladorPartida;
 import negocio.ControladorPersonaje;
 import entidades.Personaje;
 
@@ -36,9 +37,10 @@ public class frmPartida extends JFrame implements ActionListener{
 	private JButton btnAtacar2;
 	private JButton btnDefender2;
 	
-	private ControladorPersonaje ctrlPersonaje;
+	private ControladorPartida ctrlPartida;
 	private Personaje jugador1;
 	private Personaje jugador2;
+	private int turno;
 	private JLabel lblAtaqueEvadido;
 	private JLabel lblDefensaEfectuada;
 
@@ -49,10 +51,10 @@ public class frmPartida extends JFrame implements ActionListener{
 	public frmPartida(Personaje jugador1, Personaje jugador2) {
 		setTitle("Partida");
 		inicializar();
-		this.ctrlPersonaje = new ControladorPersonaje();
-		this.jugador1 = jugador1;
-		this.jugador2 = jugador2;
-		this.iniciarPartida();
+		jugador1 = jugador1;
+		jugador2 = jugador2;
+		ctrlPartida = new ControladorPartida( jugador1, jugador2);
+		iniciarPartida();
 	}
 
 	/**
@@ -64,26 +66,39 @@ public class frmPartida extends JFrame implements ActionListener{
 	
 	private void manejador(Object accion) {
 		if(accion == btnAtacar1) {
-			
+			atacar(jugador1, jugador2, Integer.parseInt(txtAtaque1.getText()));
 		}
 		else if(accion == btnDefender1) {
 			
 		}
 		else if(accion == btnAtacar2) {
-			
+			atacar(jugador2, jugador1, Integer.parseInt(txtAtaque2.getText()));
 		}
 		else if(accion == btnDefender2) {
 			
 		}
 	}
 	
+	private void atacar(Personaje pjActivo, Personaje pjPasivo, int puntos ) {
+		ctrlPartida.atacar(pjActivo, pjPasivo, puntos);
+		
+	}
+
 	private void iniciarPartida() {
-		// TODO
-		// definir el turno
-		// deshabilitar los botones segun sea el turno
-		llenarCampos();	
+		turno = ctrlPartida.getTurno();
+		habilitarControles(turno);
 	}
 	
+	private void habilitarControles(int nroJugador) {
+		if (turno == 0) {
+			btnAtacar2.setEnabled(false);
+			btnDefender2.setEnabled(false);
+		} else {
+			btnAtacar1.setEnabled(false);
+			btnDefender1.setEnabled(false);
+		}
+	}
+
 	private void llenarCampos(){
 		txtJugador1.setText(jugador1.getNombre());
 		txtJugador2.setText(jugador2.getNombre());
@@ -97,6 +112,11 @@ public class frmPartida extends JFrame implements ActionListener{
 		txtEnergia2.setText(String.valueOf(jugador2.getEnergia()));
 		txtDefensa2.setText(String.valueOf(jugador2.getDefensa()));
 		txtEvasion2.setText(String.valueOf(jugador2.getEvasion()));
+		
+		btnAtacar1.setEnabled(true);
+		btnDefender1.setEnabled(true);
+		btnAtacar2.setEnabled(true);
+		btnDefender2.setEnabled(true);
 	}
 	
 
@@ -172,6 +192,16 @@ public class frmPartida extends JFrame implements ActionListener{
 		contentPane.add(txtEvasion1);
 		
 		btnAtacar1 = new JButton("Atacar");
+		btnAtacar1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				atacar(turno, Integer.parseInt(txtAtaque1.getText()));
+			}
+
+			private void atacar(int turno, int parseInt) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		btnAtacar1.setBounds(123, 141, 87, 23);
 		btnDefender1 = new JButton("Defender");
 		btnDefender1.setBounds(123, 202, 87, 23);
@@ -234,6 +264,7 @@ public class frmPartida extends JFrame implements ActionListener{
 		contentPane.add(txtEvasion2);
 		
 		btnAtacar2 = new JButton("Atacar");
+		btnAtacar2.addActionListener(this);
 		btnAtacar2.setBounds(222, 141, 87, 23);
 		btnDefender2 = new JButton("Defender");
 		btnDefender2.setBounds(222, 202, 87, 23);
@@ -275,4 +306,6 @@ public class frmPartida extends JFrame implements ActionListener{
 		lblDefensaEfectuada.setBounds(123, 236, 186, 14);
 		contentPane.add(lblDefensaEfectuada);
 	}
+	
+	
 }
