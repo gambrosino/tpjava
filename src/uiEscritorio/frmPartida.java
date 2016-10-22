@@ -39,8 +39,7 @@ public class frmPartida extends JFrame implements ActionListener{
 	private ControladorPersonaje ctrlPersonaje;
 	private Personaje jugador1;
 	private Personaje jugador2;
-	private JLabel lblAtaqueEvadido;
-	private JLabel lblDefensaEfectuada;
+	private JLabel lblMensaje;
 
 	
 	/**
@@ -174,7 +173,7 @@ public class frmPartida extends JFrame implements ActionListener{
 		btnAtacar1 = new JButton("Atacar");
 		btnAtacar1.setBounds(123, 141, 87, 23);
 		btnDefender1 = new JButton("Defender");
-		btnDefender1.setBounds(123, 202, 87, 23);
+		btnDefender1.setBounds(123, 176, 87, 23);
 		contentPane.add(btnAtacar1);
 		contentPane.add(btnDefender1);
 		
@@ -236,7 +235,7 @@ public class frmPartida extends JFrame implements ActionListener{
 		btnAtacar2 = new JButton("Atacar");
 		btnAtacar2.setBounds(222, 141, 87, 23);
 		btnDefender2 = new JButton("Defender");
-		btnDefender2.setBounds(222, 202, 87, 23);
+		btnDefender2.setBounds(222, 176, 87, 23);
 		
 		contentPane.add(btnAtacar2);
 		contentPane.add(btnDefender2);
@@ -263,16 +262,10 @@ public class frmPartida extends JFrame implements ActionListener{
 		lblAtaque2.setBounds(367, 145, 57, 14);
 		contentPane.add(lblAtaque2);
 		
-		//esto aparece solo si el ataque es evadido. Msj: "Ataque Evadido"
-		lblAtaqueEvadido = new JLabel("");
-		lblAtaqueEvadido.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAtaqueEvadido.setBounds(123, 175, 186, 14);
-		contentPane.add(lblAtaqueEvadido);
-		
 		//esto aparece al pulsar boton Defender, donde el msj es "Defensa efectuada"
-		lblDefensaEfectuada = new JLabel("");
-		lblDefensaEfectuada.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDefensaEfectuada.setBounds(123, 236, 186, 14);
-		contentPane.add(lblDefensaEfectuada);
+		lblMensaje = new JLabel("");
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensaje.setBounds(123, 222, 186, 14);
+		contentPane.add(lblMensaje);
 	}
 }

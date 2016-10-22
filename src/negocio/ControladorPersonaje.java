@@ -14,7 +14,7 @@ public class ControladorPersonaje {
 	
 	private Personaje personaje;
 	
-	private datos.DatosPersonaje datosPersonaje;
+	private DatosPersonaje datosPersonaje;
 
 	public ControladorPersonaje() {
 		this.personajes = new ArrayList<Personaje>();
@@ -25,28 +25,30 @@ public class ControladorPersonaje {
 		return this.personaje;
 	}
 	
-	public Personaje crear(String nombre) {
-		this.personaje = new Personaje(nombre);
-		// validar que no exista el nombre
-		return personaje;
+	public boolean crear(String nombre) {
+		
+		if(!existe(nombre)) {
+			this.personaje = new Personaje(nombre.trim());
+			
+			this.datosPersonaje.crear(personaje);
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public void actualizar(Personaje personaje, Hashtable<String, String> atributos) {
-		// TODO validar datos, manejar excepciones
 		personaje.setVida(Integer.parseInt(atributos.get("vida")));
 		personaje.setEnergia(Integer.parseInt(atributos.get("energia")));
 		personaje.setDefensa(Integer.parseInt(atributos.get("defensa")));
 		personaje.setEvasion(Integer.parseInt(atributos.get("evasion")));
 		personaje.setPuntosDisponibles(Integer.parseInt(atributos.get("puntosDisponibles")));
 		
-		if (personaje.getId() == 0) {
-			datosPersonaje.crear(personaje);
-		} else {
-			datosPersonaje.actualizar(personaje);
-		}	
+		this.datosPersonaje.actualizar(personaje);
 	}
 	public void eliminar(Personaje personaje){
-		datosPersonaje.eliminar(personaje);
+		this.datosPersonaje.eliminar(personaje);
 	}
 	
 	public Personaje traerPor(int id) {
@@ -56,6 +58,16 @@ public class ControladorPersonaje {
 	public ArrayList<Personaje> traerTodos(){
 		personajes = this.datosPersonaje.traerTodos();
 		return personajes;
+	}
+	
+	public boolean existe(String nombre) {
+	
+		//for(Personaje personaje : traerTodos() ){
+			//if (personaje.getNombre().toString() == nombre.toString())
+			return this.datosPersonaje.existe(nombre.trim());
+		//}
+		
+		//return false;
 	}
 
 }

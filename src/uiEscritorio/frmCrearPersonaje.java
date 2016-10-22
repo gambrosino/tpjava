@@ -48,14 +48,18 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 	
 	private void manejador(Object accion) 
 	{
+		lblMensaje.setText("");
+		
 		if(accion == btnCrear) {
-			abrirCargarPuntos();
+			if(ctrlPersonaje.crear(txtNombre.getText())) {
+				abrirCargarPuntos();
+			}else {
+				lblMensaje.setText("Ya existe un personaje con ese nombre");
+			}
 		}
 		else if (accion == btnCancelar) {
 			abrirPersonaje();
 		}
-		
-	    cerrarVentana();
     }
 
 	private void cerrarVentana() {
@@ -67,12 +71,16 @@ public class frmCrearPersonaje extends JFrame implements ActionListener{
 		frmPersonaje frmPersonaje = new frmPersonaje();
 		frmPersonaje.setLocationRelativeTo(null);
 		frmPersonaje.setVisible(true);
+
+	    cerrarVentana();
 	}
 
 	private void abrirCargarPuntos() {
-		frmCargarPuntos frmCargarPuntos = new frmCargarPuntos(ctrlPersonaje.crear(txtNombre.getText()));
+		frmCargarPuntos frmCargarPuntos = new frmCargarPuntos(ctrlPersonaje.traerActual());
 		frmCargarPuntos.setLocationRelativeTo(null);
 		frmCargarPuntos.setVisible(true);
+
+	    cerrarVentana();
 	}
 
 	/**

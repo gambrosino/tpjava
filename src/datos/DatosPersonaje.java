@@ -192,4 +192,39 @@ public class DatosPersonaje {
 			}
 		}
 	}
+	
+	public boolean existe(String nombre) {
+		ResultSet rs=null;
+		PreparedStatement stmt=null;
+		boolean existe = false;
+		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+					"SELECT nombre FROM personajes " +
+					"WHERE nombre=?");
+			stmt.setString(1, nombre);
+			
+			rs = stmt.executeQuery();
+			
+			while(rs.next()){ 
+				existe = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return existe;
+	}
 }
