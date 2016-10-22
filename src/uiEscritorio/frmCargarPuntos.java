@@ -71,10 +71,17 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		else if(accion == btnVidaD) decrementar(txtVida);
 		else if(accion == btnEnergiaU) incrementar(txtEnergia);
 		else if(accion == btnEnergiaD) decrementar(txtEnergia);
+<<<<<<< HEAD
 		else if(accion == btnDefensaU) {validarDefensa(); incrementar(txtDefensa); }
 		else if(accion == btnDefensaD) {validarDefensa(); decrementar(txtDefensa);}
 		else if(accion == btnEvasionU) {validarEvasion(); incrementar(txtEvasion); }
 		else if(accion == btnEvasionD) {validarEvasion(); decrementar(txtEvasion);}
+=======
+		else if(accion == btnDefensaU) {incrementar(txtDefensa); validarDefensa();}
+		else if(accion == btnDefensaD) decrementar(txtDefensa);
+		else if(accion == btnEvasionU) incrementar(txtEvasion);
+		else if(accion == btnEvasionD) decrementar(txtEvasion);
+>>>>>>> 9094ec4f26efe6d76fa8dcbf36318e2b49ed6777
 		
 		if (accion == btnGuardar || accion == btnCancelar) {
 			abrirPersonaje();
@@ -82,6 +89,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
     }
 	
 	private void validarDefensa(){
+<<<<<<< HEAD
 		btnDefensaU.setEnabled(true);
 		if(Integer.parseInt(txtDefensa.getText())==(Personaje.limiteDefensa)){
 			btnDefensaU.setEnabled(false);
@@ -94,6 +102,12 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		}	
 	}
 	
+=======
+		if(Integer.parseInt(txtDefensa.getText())> 20){
+			btnDefensaU.setEnabled(false);
+		}	
+	}
+>>>>>>> 9094ec4f26efe6d76fa8dcbf36318e2b49ed6777
 	private void abrirPersonaje() {
 		frmPersonaje frmPersonaje = new frmPersonaje();
 		frmPersonaje.setLocationRelativeTo(null);
