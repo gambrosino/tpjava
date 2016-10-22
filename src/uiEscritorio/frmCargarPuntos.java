@@ -71,7 +71,7 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		else if(accion == btnVidaD) decrementar(txtVida);
 		else if(accion == btnEnergiaU) incrementar(txtEnergia);
 		else if(accion == btnEnergiaD) decrementar(txtEnergia);
-		else if(accion == btnDefensaU) incrementar(txtDefensa);
+		else if(accion == btnDefensaU) {incrementar(txtDefensa); validarDefensa();}
 		else if(accion == btnDefensaD) decrementar(txtDefensa);
 		else if(accion == btnEvasionU) incrementar(txtEvasion);
 		else if(accion == btnEvasionD) decrementar(txtEvasion);
@@ -80,7 +80,12 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 			abrirPersonaje();
 		}
     }
-
+	
+	private void validarDefensa(){
+		if(Integer.parseInt(txtDefensa.getText())> 20){
+			btnDefensaU.setEnabled(false);
+		}	
+	}
 	private void abrirPersonaje() {
 		frmPersonaje frmPersonaje = new frmPersonaje();
 		frmPersonaje.setLocationRelativeTo(null);
