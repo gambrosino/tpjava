@@ -71,16 +71,29 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		else if(accion == btnVidaD) decrementar(txtVida);
 		else if(accion == btnEnergiaU) incrementar(txtEnergia);
 		else if(accion == btnEnergiaD) decrementar(txtEnergia);
-		else if(accion == btnDefensaU) incrementar(txtDefensa);
-		else if(accion == btnDefensaD) decrementar(txtDefensa);
-		else if(accion == btnEvasionU) incrementar(txtEvasion);
-		else if(accion == btnEvasionD) decrementar(txtEvasion);
+		else if(accion == btnDefensaU) {validarDefensa(); incrementar(txtDefensa); }
+		else if(accion == btnDefensaD) {validarDefensa(); decrementar(txtDefensa);}
+		else if(accion == btnEvasionU) {validarEvasion(); incrementar(txtEvasion); }
+		else if(accion == btnEvasionD) {validarEvasion(); decrementar(txtEvasion);}
 		
 		if (accion == btnGuardar || accion == btnCancelar) {
 			abrirPersonaje();
 		}
     }
-
+	
+	private void validarDefensa(){
+		btnDefensaU.setEnabled(true);
+		if(Integer.parseInt(txtDefensa.getText())==(Personaje.limiteDefensa)){
+			btnDefensaU.setEnabled(false);
+		}
+	}	
+	private void validarEvasion(){
+		btnEvasionU.setEnabled(true);
+		if(Integer.parseInt(txtEvasion.getText())== (Personaje.limiteEvasion)){
+			btnEvasionU.setEnabled(false);
+		}	
+	}
+	
 	private void abrirPersonaje() {
 		frmPersonaje frmPersonaje = new frmPersonaje();
 		frmPersonaje.setLocationRelativeTo(null);
