@@ -2,6 +2,9 @@ package entidades;
 
 public class Personaje {
 	
+	public static int limiteDefensa = 20;
+	public static int limiteEvasion = 80;
+	
 	//Attributes
 	private int id;
 	private String nombre;
@@ -84,6 +87,26 @@ public class Personaje {
 			this.puntosDisponibles -= puntos;
 			return true;
 		}
-		return false ;
+		return false;
 	}
+	
+	//Acciones
+	 public void atacar(int puntos) {
+		 this.energia -= puntos;
+	 }
+	 
+	 public void intentarEvadir(int puntosAtaque) {
+		 int umbralEvasion = (int)(Math.random() * 100);
+		 if (getEvasion() < umbralEvasion) {
+			 vida -= puntosAtaque;
+		 }
+	 }
+	 
+	 public void defender(int energia, int vida){
+		 int energiaARecuperar = energia * getDefensa() / 100;
+		 int vidaARecuperar = vida * getDefensa() / 250;
+		 
+		 this.energia += energiaARecuperar;
+		 this.vida += vidaARecuperar;
+	 }
 }

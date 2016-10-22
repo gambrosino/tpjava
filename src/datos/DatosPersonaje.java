@@ -97,7 +97,6 @@ public class DatosPersonaje {
 	}
 	
 	public void crear(Personaje personaje) {
-		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		try {
 			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
@@ -118,7 +117,6 @@ public class DatosPersonaje {
 			e.printStackTrace();
 		}finally {
 			try {
-				if(rs!=null) rs.close();
 				if(stmt!=null) stmt.close();
 				FactoryConexion.getInstancia().releaseConn();
 			} catch (ApplicationException e) {
@@ -130,7 +128,6 @@ public class DatosPersonaje {
 	}
 	
 	public void actualizar(Personaje personaje) {
-		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		
 		try {
@@ -154,7 +151,6 @@ public class DatosPersonaje {
 			e.printStackTrace();
 		}finally {
 			try {
-				if(rs!=null) rs.close();
 				if(stmt!=null) stmt.close();
 				FactoryConexion.getInstancia().releaseConn();
 			} catch (ApplicationException e) {
@@ -166,7 +162,6 @@ public class DatosPersonaje {
 	}
 	
 	public void eliminar(Personaje personaje) {
-		ResultSet rs=null;
 		PreparedStatement stmt=null;
 		
 		try {
@@ -182,7 +177,6 @@ public class DatosPersonaje {
 			e.printStackTrace();
 		}finally {
 			try {
-				if(rs!=null) rs.close();
 				if(stmt!=null) stmt.close();
 				FactoryConexion.getInstancia().releaseConn();
 			} catch (ApplicationException e) {
@@ -226,5 +220,36 @@ public class DatosPersonaje {
 			}
 		}
 		return existe;
+	}
+	
+	public static void setPuntosGanador(Personaje personaje) {
+		ResultSet rs=null;
+		PreparedStatement stmt=null;
+		
+		try {
+			stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+					"UPDATE personajes SET puntosDisponibles=? " +
+					"WHERE id=?");
+			
+			stmt.setInt(1, personaje.getPuntosDisponibles());
+			stmt.setInt(2, personaje.getId());
+			
+			stmt.execute();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

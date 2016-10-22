@@ -4,11 +4,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import negocio.ControladorPersonaje;
+import negocio.ControladorPartida;
 import entidades.Personaje;
 
 import java.awt.event.ActionEvent;
@@ -36,11 +37,9 @@ public class frmPartida extends JFrame implements ActionListener{
 	private JButton btnAtacar2;
 	private JButton btnDefender2;
 	
-	private ControladorPersonaje ctrlPersonaje;
-	private Personaje jugador1;
-	private Personaje jugador2;
-	private JLabel lblMensaje;
+	private ControladorPartida ctrlPartida;
 
+	private JLabel lblMensaje;
 	
 	/**
 	 * Create the frame.
@@ -48,10 +47,8 @@ public class frmPartida extends JFrame implements ActionListener{
 	public frmPartida(Personaje jugador1, Personaje jugador2) {
 		setTitle("Partida");
 		inicializar();
-		this.ctrlPersonaje = new ControladorPersonaje();
-		this.jugador1 = jugador1;
-		this.jugador2 = jugador2;
-		this.iniciarPartida();
+		ctrlPartida = new ControladorPartida(jugador1, jugador2);
+		continuarPartida();
 	}
 
 	/**
@@ -63,27 +60,76 @@ public class frmPartida extends JFrame implements ActionListener{
 	
 	private void manejador(Object accion) {
 		if(accion == btnAtacar1) {
+			int energia = Integer.parseInt(txtAtaque1.getText());
 			
+			if(ctrlPartida.validarEnergia(energia)) {
+				ctrlPartida.atacar(energia);
+			}
 		}
 		else if(accion == btnDefender1) {
-			
+			ctrlPartida.defender();
 		}
 		else if(accion == btnAtacar2) {
+			int energia = Integer.parseInt(txtAtaque2.getText());
 			
+			if(ctrlPartida.validarEnergia(energia)) {
+				ctrlPartida.atacar(energia);
+			}
 		}
 		else if(accion == btnDefender2) {
+			ctrlPartida.defender();
+		}
+		
+		if(ctrlPartida.validaFinPartida()) {
+			JOptionPane.showMessageDialog(null, this.ctrlPartida.getPartida().mensaje);
 			
+			volverMenuPrincipal();
+		}
+		
+		continuarPartida();
+	}
+
+	private void continuarPartida() {
+		lblMensaje.setText(this.ctrlPartida.getPartida().mensaje);
+		llenarCampos();
+		setTurno(ctrlPartida.getTurno());
+	}
+	
+	private void volverMenuPrincipal() {
+		frmMenuPrincipal frmMenuPrincipal = new frmMenuPrincipal();
+		frmMenuPrincipal.setLocationRelativeTo(null);
+		frmMenuPrincipal.setVisible(true);
+		
+		setVisible(false);
+		dispose();
+	}
+	
+	private void setTurno(int turno) {
+		
+		Personaje j1 = this.ctrlPartida.getPartida().getJugador1();
+		Personaje j2 = this.ctrlPartida.getPartida().getJugador2();
+		
+		if (turno == j1.getId()) {
+			btnAtacar1.setEnabled(true);
+			btnDefender1.setEnabled(true);
+			txtAtaque1.setEnabled(true);
+			btnAtacar2.setEnabled(false);
+			btnDefender2.setEnabled(false);
+			txtAtaque2.setEnabled(false);
+		} else if(turno == j2.getId()) {
+			btnAtacar1.setEnabled(false);
+			btnDefender1.setEnabled(false);
+			txtAtaque1.setEnabled(false);
+			btnAtacar2.setEnabled(true);
+			btnDefender2.setEnabled(true);
+			txtAtaque2.setEnabled(true);
 		}
 	}
-	
-	private void iniciarPartida() {
-		// TODO
-		// definir el turno
-		// deshabilitar los botones segun sea el turno
-		llenarCampos();	
-	}
-	
+
 	private void llenarCampos(){
+		Personaje jugador1 = ctrlPartida.getPartida().getJugador1();
+		Personaje jugador2 = ctrlPartida.getPartida().getJugador2();
+		
 		txtJugador1.setText(jugador1.getNombre());
 		txtJugador2.setText(jugador2.getNombre());
 		
@@ -97,7 +143,6 @@ public class frmPartida extends JFrame implements ActionListener{
 		txtDefensa2.setText(String.valueOf(jugador2.getDefensa()));
 		txtEvasion2.setText(String.valueOf(jugador2.getEvasion()));
 	}
-	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -172,10 +217,15 @@ public class frmPartida extends JFrame implements ActionListener{
 		
 		btnAtacar1 = new JButton("Atacar");
 		btnAtacar1.setBounds(123, 141, 87, 23);
+		
 		btnDefender1 = new JButton("Defender");
 		btnDefender1.setBounds(123, 176, 87, 23);
+		
 		contentPane.add(btnAtacar1);
 		contentPane.add(btnDefender1);
+		
+		btnAtacar1.addActionListener(this);
+		btnDefender1.addActionListener(this);
 		
 		JLabel lblJugador2 = new JLabel("JUGADOR 2");
 		lblJugador2.setBounds(337, 11, 87, 14);
@@ -234,11 +284,15 @@ public class frmPartida extends JFrame implements ActionListener{
 		
 		btnAtacar2 = new JButton("Atacar");
 		btnAtacar2.setBounds(222, 141, 87, 23);
+		
 		btnDefender2 = new JButton("Defender");
 		btnDefender2.setBounds(222, 176, 87, 23);
 		
 		contentPane.add(btnAtacar2);
 		contentPane.add(btnDefender2);
+		
+		btnAtacar2.addActionListener(this);
+		btnDefender2.addActionListener(this);
 		
 		txtAtaque1 = new JTextField();
 		txtAtaque1.setBounds(67, 142, 46, 20);
@@ -262,7 +316,6 @@ public class frmPartida extends JFrame implements ActionListener{
 		lblAtaque2.setBounds(367, 145, 57, 14);
 		contentPane.add(lblAtaque2);
 		
-		//esto aparece al pulsar boton Defender, donde el msj es "Defensa efectuada"
 		lblMensaje = new JLabel("");
 		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMensaje.setBounds(123, 222, 186, 14);

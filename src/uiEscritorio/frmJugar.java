@@ -62,7 +62,6 @@ public class frmJugar extends JFrame implements ActionListener{
 	private void comenzarPartida() {
 		frmPartida frmPartida = new frmPartida((Personaje)(cmbJugador1.getSelectedItem()),
 				   								(Personaje)(cmbJugador2.getSelectedItem()));
-		
 		frmPartida.setLocationRelativeTo(null);
 		frmPartida.setVisible(true);
 		cerrarVentana();

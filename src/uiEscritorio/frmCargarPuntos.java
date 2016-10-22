@@ -76,10 +76,29 @@ public class frmCargarPuntos extends JFrame implements ActionListener{
 		else if(accion == btnEvasionU) incrementar(txtEvasion);
 		else if(accion == btnEvasionD) decrementar(txtEvasion);
 		
+		validarEvasion();
+		validarDefensa();
+		
 		if (accion == btnGuardar || accion == btnCancelar) {
 			abrirPersonaje();
 		}
     }
+	
+	private void validarDefensa(){
+		btnDefensaU.setEnabled(false);
+		
+		if(Integer.parseInt(txtDefensa.getText()) < Personaje.limiteDefensa){
+			btnDefensaU.setEnabled(true);
+		}
+	}	
+	
+	private void validarEvasion(){
+		btnEvasionU.setEnabled(false);
+		
+		if(Integer.parseInt(txtEvasion.getText()) < Personaje.limiteEvasion){
+			btnEvasionU.setEnabled(true);
+		}	
+	}
 
 	private void abrirPersonaje() {
 		frmPersonaje frmPersonaje = new frmPersonaje();
